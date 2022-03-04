@@ -5,9 +5,12 @@
 ## 🧊 Kubernetes
 
 * [Vision and Values](kubernetes/vision-and-values.md)
-* [Meet the Team!](kubernetes/meet-the-team.md)
 
-## The Formal Stuff
+## 📦 AWS
 
-* [Requesting Time Off](the-formal-stuff/requesting-time-off.md)
-* [Filing Expenses](the-formal-stuff/filing-expenses.md)
+* [Requesting Time Off](aws/requesting-time-off.md)
+* [Filing Expenses](aws/filing-expenses.md)
+
+## 🦊 GitLab
+
+* [Page 1](gitlab/page-1.md)

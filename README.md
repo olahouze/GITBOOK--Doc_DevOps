@@ -1,6 +1,7 @@
 ---
 description: Documentation sur les technologies DevOps
-coverY: 0
+coverY: 72.44582043343654
+cover: .gitbook/assets/banniere-2.jpg
 ---
 
 # Accueil
