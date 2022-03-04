@@ -4,12 +4,11 @@
 
 ## 🧊 Kubernetes
 
-* [Vision and Values](kubernetes/vision-and-values.md)
+* [\[Concepts\] - Stockage](kubernetes/concepts-stockage.md)
 
 ## 📦 AWS
 
-* [Requesting Time Off](aws/requesting-time-off.md)
-* [Filing Expenses](aws/filing-expenses.md)
+* [Page 2](aws/page-2.md)
 
 ## 🦊 GitLab
 
