@@ -4,7 +4,7 @@
 
 ## 🧊 Kubernetes
 
-* [\[Concepts\] - Stockage](kubernetes/concepts-stockage.md)
+* [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
 
 ## 📦 AWS
 
