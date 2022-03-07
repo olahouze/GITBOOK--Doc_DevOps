@@ -8,7 +8,7 @@
 
 ## 📦 AWS
 
-* [\[EKS\] - Administration cluster](aws/eks-administration-cluster.md)
+* [\[EKS\] - Administration cluster](aws/page-2.md)
 
 ## 🦊 GitLab
 
