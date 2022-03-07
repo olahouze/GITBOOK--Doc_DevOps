@@ -94,3 +94,7 @@ mapUsers:
 ```
 
 </details>
+
+## Configuration Kubectl
+
+Une fois toutes les habilitations OK vous pouvez générer le fichier de configuration vous permettant de se connecter au cluster : **aws eks --region \[region] update-kubeconfig --name \[cluster\_name]**
