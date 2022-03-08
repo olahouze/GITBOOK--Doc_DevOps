@@ -98,3 +98,25 @@ mapUsers:
 ## Configuration Kubectl
 
 Une fois toutes les habilitations OK vous pouvez générer le fichier de configuration vous permettant de se connecter au cluster : **aws eks --region \[region] update-kubeconfig --name \[cluster\_name]**
+
+## **Changer de contexte Kubectl**&#x20;
+
+Il est possible de configurer son kubectl avec plusieurs accès à différents clusters
+
+Dans ce cas nous pouvons changer de contexte facilement de la manière suivante :&#x20;
+
+1. Visualiser les différents contexte : **kubectl config get-contexts**
+
+<details>
+
+<summary>kubectl config get-contexts</summary>
+
+```
+CURRENT   NAME                                                                CLUSTER                                                             AUTHINFO                                                            NAMESPACE
+*         arn:aws:eks:eu-west-3:115260554xxx:cluster/aws-common-development   arn:aws:eks:eu-west-3:115260554xxx:cluster/aws-common-development   arn:aws:eks:eu-west-3:115260554xxx:cluster/aws-common-development   
+          arn:aws:eks:eu-west-3:115260554xxx:cluster/aws-common-validation    arn:aws:eks:eu-west-3:115260554xxx:cluster/aws-common-validation    arn:aws:eks:eu-west-3:115260554xxx:cluster/aws-common-validation
+```
+
+</details>
+
+2\. Pour changer de contexte : **kubectl config use-context \[context]**
