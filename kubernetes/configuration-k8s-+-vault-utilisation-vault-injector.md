@@ -337,4 +337,130 @@ spec
   serviceAccountName: test-sa
 ```
 
-\
+## Exemples
+
+Voici un exemple de déploiement pour récupérer des carentiels dans un POD en interrogeant Vault
+
+Nous utilisons le service account **test-sa** qui a ete autorisé dans les roles de la méthode d'authentification K8S sur Vault
+
+Nous récupérons les éléments de la branche **lizeo-europe/project/awx/gitlab**
+
+Nous stockons les éléments dans le fichier **config.txt** (stockés dans /vault/secrets/)
+
+<details>
+
+<summary><strong>Pod test recuperation Vault</strong></summary>
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  namespace: test
+  annotations:
+    vault.hashicorp.com/agent-inject: 'true'
+    vault.hashicorp.com/role: 'test_test-sa'
+    vault.hashicorp.com/agent-inject-secret-config.txt: 'lizeo-europe/project/awx/gitlab'     
+spec:
+  containers:
+  - image: nginx:latest
+    name: nginx
+  serviceAccountName: test-sa
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: eks.amazonaws.com/nodegroup
+            operator: In
+            values:
+            - common-spot
+            - common-on-d
+  tolerations:
+    - effect: NoSchedule
+      key: dedicated
+      operator: Equal
+      value: common
+```
+
+</details>
+
+Le résultat est le suivant :
+
+```
+kubectl -n test exec -it webapp -- sh
+Defaulted container "nginx" out of: nginx, vault-agent, vault-agent-init (init)
+# cat /vault/secrets/config.txt
+data: map[ansible-awx:85YdZLCTaymR4XXXXXXX_]
+metadata: map[created_time:2020-07-06T19:09:43.412598839Z deletion_time: destroyed:false version:1]
+#
+```
+
+Nous pouvons récupérer différents secrets dans différents dossiers :
+
+| **Fichier** | **Élément**                          |
+| ----------- | ------------------------------------ |
+| config.txt  | lizeo-europe/project/awx/gitlab      |
+| test.txt    | lizeo-europe/project/awx/development |
+
+<details>
+
+<summary><strong>Pod test recuperation Vault</strong></summary>
+
+```
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  namespace: test
+  annotations:
+    vault.hashicorp.com/agent-inject: 'true'
+    vault.hashicorp.com/role: 'test_test-sa'
+    vault.hashicorp.com/agent-inject-secret-config.txt: 'lizeo-europe/project/awx/gitlab'
+    vault.hashicorp.com/agent-inject-secret-test.txt: 'lizeo-europe/project/awx/development'      
+spec:
+  containers:
+  - image: nginx:latest
+    name: nginx
+  serviceAccountName: test-sa
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: eks.amazonaws.com/nodegroup
+            operator: In
+            values:
+            - common-spot
+            - common-on-d
+  tolerations:
+    - effect: NoSchedule
+      key: dedicated
+      operator: Equal
+      value: common
+```
+
+</details>
+
+Résultat :
+
+```
+kubectl -n test exec -it webapp -- sh
+Defaulted container "nginx" out of: nginx, vault-agent, vault-agent-init (init)
+# cat /vault/secrets/config.txt
+data: map[ansible-awx:85YdZLCTaymR4rxXXXX_]
+metadata: map[created_time:2020-07-06T19:09:43.412598839Z deletion_time: destroyed:false version:1]
+# cat /vault/secrets/test.txt
+data: map[admin-password:quuQuoDaen6EiY0ahXXX postgresql-password:hlXXXXX secret-key:aXXXX ssh-ansible-passphrase:rr2SXXXX ssh-ansible-private-key:-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABAIrERc6w
+ky19YI/zb4eh2pAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQCwscPE1cTx
+X9XY5/nTc++YHK20r+1r/hECzS4FLGOPzgx0uqafLy7lyiCPHPa/rVbNkXQ9qVi1avd2y6
+.....
+Yiu7ZFjnEMZO6lX/q/hKjNPgyxQvN2SxFjf4dykh+g2jFOWAe+7yTxsYBJg/rbrbS84pSs
+WxMYqWL99T+t5EQj4ofy2ozK2XMAMCKvvYYrU4oTEcCI7IJZ0IlA33kvBhlaPuGwxO4VpS
+/ziye47ByW9iZzN3pzKm5dRvLKXE7of9W8YmWv4SiddrZNmoL2RsEvY39HypJxR8A4qoJL
+HDukqVIFYMQRGn+bpRwpgwR7R6ick=
+-----END OPENSSH PRIVATE KEY----- ssh-ansible-public-key:ssh-rsa AAAAB3NzaC1...fZU2fOdzlF57PT0YjaQGRdPEiiAq17vyVQxKZiXq ansible@awx-dev]
+metadata: map[created_time:2021-09-03T13:06:08.038424291Z deletion_time: destroyed:false version:5]
+```
