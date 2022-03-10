@@ -349,7 +349,7 @@ Nous stockons les éléments dans le fichier **config.txt** (stockés dans /vaul
 
 <details>
 
-<summary><strong>Pod test recuperation Vault</strong></summary>
+<summary><strong>Pod test récupération Vault - Simple</strong></summary>
 
 ```
 apiVersion: v1
@@ -405,7 +405,7 @@ Nous pouvons récupérer différents secrets dans différents dossiers :
 
 <details>
 
-<summary><strong>Pod test recuperation Vault</strong></summary>
+<summary><strong>Pod test récupération Vault - Multiple Fichier</strong></summary>
 
 ```
 
@@ -463,4 +463,74 @@ WxMYqWL99T+t5EQj4ofy2ozK2XMAMCKvvYYrU4oTEcCI7IJZ0IlA33kvBhlaPuGwxO4VpS
 HDukqVIFYMQRGn+bpRwpgwR7R6ick=
 -----END OPENSSH PRIVATE KEY----- ssh-ansible-public-key:ssh-rsa AAAAB3NzaC1...fZU2fOdzlF57PT0YjaQGRdPEiiAq17vyVQxKZiXq ansible@awx-dev]
 metadata: map[created_time:2021-09-03T13:06:08.038424291Z deletion_time: destroyed:false version:5]
+```
+
+<details>
+
+<summary>Pod test récupération Vault - Template (fichier test.txt)</summary>
+
+```
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  namespace: test
+  annotations:
+    vault.hashicorp.com/agent-inject: 'true'
+    vault.hashicorp.com/role: 'test_test-sa'
+    vault.hashicorp.com/agent-inject-secret-config.txt: 'lizeo-europe/project/awx/gitlab'      
+    vault.hashicorp.com/agent-inject-secret-test.txt: 'lizeo-europe/project/awx/validation'  
+    vault.hashicorp.com/agent-inject-template-test.txt: |
+          {{ with secret "lizeo-europe/project/awx/validation" }}
+          [DEFAULT]
+          LogLevel = DEBUG
+          [DATABASE]
+          Address=127.0.0.1
+          Port=3306
+          User={{ .Data.data.login }}
+          Password={{ .Data.data.password }}
+          Database=app
+          {{ end }}
+spec:
+  containers:
+  - image: nginx:latest
+    name: nginx
+  serviceAccountName: test-sa
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: eks.amazonaws.com/nodegroup
+            operator: In
+            values:
+            - common-spot
+            - common-on-d
+  tolerations:
+    - effect: NoSchedule
+      key: dedicated
+      operator: Equal
+      value: common
+
+```
+
+</details>
+
+Résultat
+
+```
+kubectl -n test exec -it webapp -- sh
+Defaulted container "nginx" out of: nginx, vault-agent, vault-agent-init (init)
+# cat /vault/secrets/test.txt
+
+[DEFAULT]
+LogLevel = DEBUG
+[DATABASE]
+Address=127.0.0.1
+Port=3306
+User=adm
+Password=admin_xyze
+Database=app
+
 ```
