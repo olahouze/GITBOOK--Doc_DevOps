@@ -319,7 +319,7 @@ Par défaut, le vault-injector est configuré pour accéder au serveur vault dé
 
 Nous avons donc besoin de modifier le déploiement du vault-injector pour lui permettre d’accéder au Vault situé à l’extérieur du cluster
 
-Dans le déploiement du vault-injector (ici : **deployment.apps/vault-agent-injector**) il faut modifier :
+Dans le <mark style="color:red;">**déploiement**</mark> du vault-injector (ici : **deployment.apps/vault-agent-injector**) il faut modifier :
 
 * **AGENT\_INJECT\_VAULT\_ADDR** : Mettre l'URL du Vault Externe
 * **AGENT\_INJECT\_VAULT\_AUTH\_PATH** : Mettre le chemin de la méthode d'authentification (ici : **kubernetes\_aws\_common\_dev\_vault-injector-dev)**
