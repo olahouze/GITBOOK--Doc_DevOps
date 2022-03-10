@@ -15,7 +15,7 @@ Pour récupérer vos identifiants (Access KEY) il faut les générer dans le ser
 
 Une fois dans le service IAM, sélectionner l'utilisateur concerné pour générer les identifiants
 
-![](<../.gitbook/assets/image (3).png>)
+![](<../.gitbook/assets/image (3) (1).png>)
 {% endhint %}
 
 Vous pouvez ensuite utiliser la commande suivante pour configurer votre CLI : **aws configure**
@@ -41,7 +41,7 @@ Vous devez disposer des droits nécessaires à vos actions sur le service EKS
 
 **Exemple :**&#x20;
 
-![](<../.gitbook/assets/image (2).png>)
+![](<../.gitbook/assets/image (2) (1).png>)
 
 ### Droit EKS
 
