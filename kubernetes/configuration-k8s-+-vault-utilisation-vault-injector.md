@@ -8,7 +8,7 @@ Il est possible d'utiliser vault en mode "**injecteur**" pour récupérer des se
 
 Le chart d’installation officiel est ici : [https://www.vaultproject.io/docs/platform/k8s/helm](https://www.vaultproject.io/docs/platform/k8s/helm)
 
-## Pre requis :  <a href="#vault+k8s-prerequis" id="vault+k8s-prerequis"></a>
+## Pre requis <a href="#vault+k8s-prerequis" id="vault+k8s-prerequis"></a>
 
 Pour que le système fonctionne il faut que :
 
@@ -17,11 +17,11 @@ Pour que le système fonctionne il faut que :
 * Que le service Vault puisse **recevoir** des flux réseau depuis les clusters qui veulent utiliser ce System (sur le protocole https pour utiliser l'API Vault)
 * Que le service Vault puisse **accéder** à l'API des clusters qui veulent utiliser ce syteme (sur le protocole https pour utiliser l'API K8S)
 
-## Fonctionnement : <a href="#vault+k8s-fonctionnement" id="vault+k8s-fonctionnement"></a>
+## Fonctionnement <a href="#vault+k8s-fonctionnement" id="vault+k8s-fonctionnement"></a>
 
 Voici l'explication du fonctionnement :&#x20;
 
-![](<../.gitbook/assets/image (4).png>)
+![](<../.gitbook/assets/image (6).png>)
 
 1. Le POD de l'application va demander à l'API Vault des acces aux secrets (en pressentant un jeton JWT associé au service account utilisé dans le POD)
 2. Le service Vault demande vérification du JWT à l'API K8S du cluster (pour récupérer le namespace du service account et vérifier que le jeton JWT est le bon)
@@ -30,7 +30,7 @@ Voici l'explication du fonctionnement :&#x20;
 
 Pour être plus précis, dans le POD il y a un **sidecar** qui réalise ces actions (le vault-agent-injector) qui fonctionne comme cela :
 
-![](<../.gitbook/assets/image (1).png>)
+![](<../.gitbook/assets/image (2).png>)
 
 \
 C'est le sidecar lors de l'initialisation qui va récupérer les secrets dans Vault et peupler le **/vault/secrets** du POD
@@ -201,18 +201,15 @@ NAME                                              DESIRED   CURRENT   READY   AG
 replicaset.apps/vault-agent-injector-65478f8d4f   1         1         1       125d
 ```
 
-\
-
-
 ### Configuration du système d'authentification K8S <a href="#vault+k8s-configurationdusystemedauthentificationk8s" id="vault+k8s-configurationdusystemedauthentificationk8s"></a>
 
 Il est possible de configurer Vault pour donner des droits sur un ensemble **cluster + account names + namespaces** pour agir sur le Vault
 
 Pour cela nous devons activer la méthode d'authentification **kubernetes** dans les configurations du Vault
 
-#### Pre requis <a href="#vault+k8s-prerequis" id="vault+k8s-prerequis"></a>
+#### Pre requis : <a href="#vault+k8s-prerequis" id="vault+k8s-prerequis"></a>
 
-**Nomenclature :**&#x20;
+<mark style="color:purple;">**Nomenclature :**</mark>&#x20;
 
 Pour simplifier la maintenance on suivra le schema de nommage
 
@@ -233,11 +230,11 @@ Cela nous donne :&#x20;
 * Politique : **kubernetes\_aws\_common\_dev\_vault-injector-dev**
 * Role **: test\_test-sa**
 
-**Informations de configuration**
+<mark style="color:purple;">**Informations de configuration**</mark>
 
 Pour la configuration de la méthode K8S sur Vault nous avons besoin des informations suivante :
 
-1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) :  ![](<../.gitbook/assets/image (3).png>)
+1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) :  ![](<../.gitbook/assets/image (5).png>)
 2.  Le token JWT du service account créé pour le besoin de vérification des jeton (dans l'exemple : **vault-injector-dev**) :&#x20;
 
     1. Récupérer le nom de l'instanciation du service account : **export **<mark style="color:blue;">**SA\_NAME**</mark>**=$(kubectl -n vault get sa vault-injector-dev -o jsonpath="{.secrets\[\*]\['name']}")**
@@ -276,19 +273,17 @@ vault write auth/kubernetes_aws_common_dev_vault-injector-dev/config \
     token_reviewer_jwt="$SA_TOKEN" \
     kubernetes_host=https://<URL API K8S>:<your TCP port or blank for 443> \
     kubernetes_ca_cert=$SA_CERT
+
 ```
-
-\
-
 
 Dans vault sur la méthode authentification il faut configurer les champs suivants:
 
 * **Kubernetes host** : url de l'api du cluster kubernetes qui demande les secrets
-* **Kubernetes CA Certificate** : partie publique du certificat du service account (préférer l'upload d'un fichier à la partie texte) que vous avez récupéré précédemment dans **$SA\_CERT**
+* **Kubernetes CA Certificate** : partie publique du certificat du service account (préférer l'upload d'un fichier à la partie texte) que vous avez récupéré précédemment dans <mark style="color:blue;">**$SA\_CERT**</mark>
 * **JWT Issuer:**  pas nécessaire
-* **Token Reviewer JWT:** partie privé (token) du service account que vous avez récupéré précédemment avec **$SA\_TOKEN**
+* **Token Reviewer JWT:** partie privé (token) du service account que vous avez récupéré précédemment avec <mark style="color:blue;">**$SA\_TOKEN**</mark>
 
-#### Création des rôles <a href="#vault+k8s-creationdesroles" id="vault+k8s-creationdesroles"></a>
+### Création des rôles <a href="#vault+k8s-creationdesroles" id="vault+k8s-creationdesroles"></a>
 
 Nous pouvons maintenant créer les roles sur le Vault qui permettent d'associer des policy aux services account qui se présentent sur l'API Vault
 
@@ -299,20 +294,24 @@ Renseigner les champs suivants:
 * **Bound service account names** : nom du service account
 * **Bound service account namespaces**: namespace autorisé à manipuler les secrets
 * **Generated Token's Policies**: policy vault à appliquer
-* **Do Not Attach 'default' Policy To Generated Tokens**: cocher cette case pour ne pas ajouter la policy default (paramètre avancé du token)
-
-\
+* **Do Not Attach 'default' Policy To Generated Tokens**: cocher cette case pour ne pas ajouter la policy default (paramètre avancé du token)\
 
 
 **GUI** : Access → Editer la méthode Kubertenes correspondant→ onglet Role → Create Role → Renseigner les parametres → Save
 
-![](https://confluence.lizeo.net/download/attachments/55869643/image2022-3-10\_12-28-37.png?version=1\&modificationDate=1646911717803\&api=v2)&#x20;
+![](<../.gitbook/assets/image (1).png>)
 
-![](https://confluence.lizeo.net/download/attachments/55869643/policy.png?version=1\&modificationDate=1646911977099\&api=v2)
+![](<../.gitbook/assets/image (3).png>)
 
 **CLI** :
 
-**Configuration Role** Développer la source
+```
+vault write auth/kubernetes_aws_common_dev_vault-injector-dev/role/test_test-sa \
+        bound_service_account_names=test-sa \
+        bound_service_account_namespaces=test \
+        policies=read_only\
+        ttl=24h
+```
 
 ### Adaptation de la configuration Vault-Injector <a href="#vault+k8s-adaptationdelaconfigurationvault-injector" id="vault+k8s-adaptationdelaconfigurationvault-injector"></a>
 
@@ -323,15 +322,19 @@ Nous avons donc besoin de modifier le déploiement du vault-injector pour lui pe
 Dans le déploiement du vault-injector (ici : **deployment.apps/vault-agent-injector**) il faut modifier :
 
 * **AGENT\_INJECT\_VAULT\_ADDR** : Mettre l'URL du Vault Externe
-* **AGENT\_INJECT\_VAULT\_AUTH\_PATH** : Mettre le chemin de la methode d'authentification (ici : **kubernetes\_aws\_common\_dev\_vault-injector-dev)**
+* **AGENT\_INJECT\_VAULT\_AUTH\_PATH** : Mettre le chemin de la méthode d'authentification (ici : **kubernetes\_aws\_common\_dev\_vault-injector-dev)**
 
-### Utilisation <a href="#vault+k8s-utilisation" id="vault+k8s-utilisation"></a>
+## Utilisation <a href="#vault+k8s-utilisation" id="vault+k8s-utilisation"></a>
 
 Dans le POD qui a besoin de récupérer les secrets il faut rajouter les éléments suivants :
 
-**Annotations**
-
-|   `annotations:    vault.hashicorp.com/agent-inject:` `'true'    vault.hashicorp.com/role:` `'<chemin méthode d'authentification>'    vault.hashicorp.com/agent-inject-secret-<name fichier>:` `'<chemin dans Vault>'spec  serviceAccountName:` `test-sa` |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```
+  annotations:
+    vault.hashicorp.com/agent-inject: 'true'
+    vault.hashicorp.com/role: '<chemin méthode d'authentification>'
+    vault.hashicorp.com/agent-inject-secret-<name fichier>: '<chemin dans Vault>'
+spec
+  serviceAccountName: test-sa
+```
 
 \
