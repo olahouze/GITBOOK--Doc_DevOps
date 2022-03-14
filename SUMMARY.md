@@ -11,6 +11,10 @@
 
 * [\[EKS\] - Administration cluster](aws/page-2.md)
 
+## 🔑 VAULT
+
+* [Utilisation CLI Distante](vault/utilisation-cli-distante.md)
+
 ## 🦊 GitLab
 
 * [Page 1](gitlab/page-1.md)
