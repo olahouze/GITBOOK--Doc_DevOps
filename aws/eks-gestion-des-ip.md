@@ -92,3 +92,5 @@ La migration est supporté par EKS
 [https://betterprogramming.pub/amazon-eks-is-eating-my-ips-e18ea057e045](https://betterprogramming.pub/amazon-eks-is-eating-my-ips-e18ea057e045)
 
 [https://medium.com/compass-true-north/experiences-for-ip-addresses-shortage-on-eks-clusters-a740f56ac2f5](https://medium.com/compass-true-north/experiences-for-ip-addresses-shortage-on-eks-clusters-a740f56ac2f5)
+
+[https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html](https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html)
