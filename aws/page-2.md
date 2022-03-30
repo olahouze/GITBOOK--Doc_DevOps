@@ -41,7 +41,7 @@ Vous devez disposer des droits nécessaires à vos actions sur le service EKS
 
 **Exemple :**&#x20;
 
-![](<../.gitbook/assets/image (2) (1).png>)
+![](<../.gitbook/assets/image (2) (1) (1).png>)
 
 ### Droit EKS
 

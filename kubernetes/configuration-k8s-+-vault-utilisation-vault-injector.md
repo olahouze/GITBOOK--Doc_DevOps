@@ -30,7 +30,7 @@ Voici l'explication du fonctionnement :&#x20;
 
 Pour être plus précis, dans le POD il y a un **sidecar** qui réalise ces actions (le vault-agent-injector) qui fonctionne comme cela :
 
-![](<../.gitbook/assets/image (2).png>)
+![](<../.gitbook/assets/image (2) (1).png>)
 
 \
 C'est le sidecar lors de l'initialisation qui va récupérer les secrets dans Vault et peupler le **/vault/secrets** du POD
