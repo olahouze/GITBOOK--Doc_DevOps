@@ -7,7 +7,7 @@
 * [Documentation Référence](kubernetes/documentation-reference.md)
 * [\[Concepts\] - Gestion des objets](kubernetes/concepts-gestion-des-objets.md)
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
-* [\[Concepts\] - !!!Service](kubernetes/concepts-service.md)
+* [\[Concepts\] - Service](kubernetes/concepts-service.md)
 * [\[Concepts\] - !!!Kube-proxy](kubernetes/concepts-kube-proxy.md)
 * [\[Concepts\] - Admission Controller](kubernetes/concepts-admission-controller.md)
 * [\[Configuration\] - K8S + Vault - Utilisation Vault-Injector](kubernetes/configuration-k8s-+-vault-utilisation-vault-injector.md)
