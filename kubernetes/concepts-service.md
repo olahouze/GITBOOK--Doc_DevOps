@@ -1,8 +1,8 @@
-# \[Concepts] - !!!Service
+# \[Concepts] - Service
 
 ## Description
 
-Les services permettent d'exposer sur une IP et un port fixe l’accès a des PODs
+Les services permettent d'exposer sur <mark style="color:red;">**une IP et un port fixe**</mark> l’accès a des PODs
 
 Il existe différents type d'exposition
 
