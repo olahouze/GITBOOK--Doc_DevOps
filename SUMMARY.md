@@ -5,6 +5,7 @@
 ## 🧊 Kubernetes
 
 * [Documentation Référence](kubernetes/documentation-reference.md)
+* [\[Concepts\] - Gestion des objets](kubernetes/concepts-gestion-des-objets.md)
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
 * [\[Concepts\] - !!!Service](kubernetes/concepts-service.md)
 * [\[Concepts\] - !!!Kube-proxy](kubernetes/concepts-kube-proxy.md)
