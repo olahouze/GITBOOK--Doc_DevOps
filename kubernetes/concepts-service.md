@@ -44,3 +44,5 @@ Les différentes étapes lors de l'exposition d'un service
 {% embed url="https://www.stackrox.io/blog/kubernetes-networking-demystified" %}
 
 {% embed url="https://kubernetes.io/docs/concepts/services-networking/service" %}
+
+{% embed url="https://rtfm.co.ua/en/kubernetes-service-load-balancing-kube-proxy-and-iptables" %}
