@@ -22,10 +22,10 @@ Les différentes étapes lors de l'exposition d'un service
    1. Port d'exposition du service
    2. Port d’écoute des POD (optionnel)
    3. IP d'exposition du service (optionnel)
-2. Le cluster va créer le service et lui associé l'IP adéquat
-3. Le cluster va créer les différents **endpoints** en fonction du nombre de POD concernés par le service
+2. Le cluster va créer le service et lui associé l'IP adéquat (Virtual IP)
+3. Le cluster va créer les différents **endpoints** en fonction du nombre de POD concernés par le service (Endpoint = IP POD + port d'ecoute du POD)
 4. Le **kube-proxy** de chaque node va agir sur les règles **iptables** pour permettre à chaque node de
-   1. Traiter le trafic à destination de l'IP du service (IP virtuelle)
+   1. Traiter le trafic à destination de l'IP du service (Virtual IP)
    2. Renvoyer le paquet sur un node qui héberge un POD concerné par le service
 5. (option si type = Loadbalancer) : Demande au provider de créer le loadbalanceur pour rediriger le flux vers les nodes sur les bons ports
 
