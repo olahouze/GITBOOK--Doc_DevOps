@@ -61,7 +61,7 @@ Cela donne sur le cluster
 ```
 NAME                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
 kubernetes-dashboard   ClusterIP   192.168.18.202   <none>        443/TCP   111d
-guillaume@GuiHome:~$ kubectl get endpoints -nkube-system kubernetes-dashboard
+~$ kubectl get endpoints -nkube-system kubernetes-dashboard
 NAME                   ENDPOINTS            AGE
 kubernetes-dashboard   192.168.34.17:8443   111d
 ```
@@ -109,13 +109,27 @@ Si nous demandons un service de type **NodePort** ou **LoadBalancer**, nous avon
 Nous pouvons visualiser cela dans la définition du service :&#x20;
 
 ```
-NAME                        TYPE          EXTERNAL-IP                        PORT(S)
-nginx-service-loadbalancer  LoadBalancer  *****.eu-west-1.elb.amazonaws.com  80:30039/TCP
+NAME                  TYPE           CLUSTER-IP      EXTERNAL-IP                                                                     PORT(S)                                                                                AGE
+service/traefik       LoadBalancer   172.20.94.201   ab4367c2ff9ee4332b4177dfc86df9ac-21320c7a8fbd5518.elb.eu-west-3.amazonaws.com   3306:30699/TCP,3307:30004/TCP,2223:30375/TCP,22:32755/TCP,80:31992/TCP,443:31377/TCP   110d
 ```
 
-Dans cet exemple, le port exposé à l’extérieur pour ce service 80 est le port **30039**
+Dans cet exemple, le port exposé à l’extérieur pour ce service 80 est le port <mark style="color:red;">**31992**</mark>
 
+#### **LoadBalanceur AWS**
 
+Si ce service est exposé derrière un AWS Loadbalancer voici **** le paramétrage des loadbalanceur
+
+Ici notre LB **ab4367c2ff9ee4332b4177dfc86df9ac-21320c7a8fbd5518.elb.eu-west-3.amazonaws.com**
+
+![](<../.gitbook/assets/capture 01.png>)
+
+La redirection se fait sur un groupe que nous pouvons visualiser
+
+![](<../.gitbook/assets/capture 02.png>)
+
+Nous constatons donc bien que le LB renvoi bien vers un groupe de node (contenant tous les nodes du cluster) sur le **Nodeport** créé pour le service (ici <mark style="color:red;">**31992**</mark>**)**
+
+**Note :** Dans cette exemple nous n'avons qu'un seul node qui répond car nous avons le paramètre suivant dans la définition du service : **External Traffic Policy: Local**
 
 ## Sources
 
