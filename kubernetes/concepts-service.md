@@ -8,7 +8,7 @@ Il existe différents type d'exposition
 
 1. **Cluster IP** : Permet d'exposer des services uniquement pour les POD à l'interrieur du cluster (type par defaut)
 2. **Node Port** : Permet d'exposer sur tous les nodes un port et une IP fixe pour acceder au service (non recommendé)
-3. **Loadbalanceur** : Permet de demander au Provider la création d'un Load Balanceur qui va donner l’accès au service au monde extérieur&#x20;
+3. **Loadbalanceur** : Permet de demander au Provider la création d'un Load Balanceur qui va donner l’accès au service au monde extérieur (création automatique des éléments "cluster IP" + "Node Port")
 
 {% hint style="info" %}
 La methode de redirection des flux entre le LoadBalanceur et le service est différent selon les Providers : [https://www.stackrox.io/blog/kubernetes-networking-demystified/](https://www.stackrox.io/blog/kubernetes-networking-demystified/)
@@ -27,7 +27,7 @@ Les différentes étapes lors de l'exposition d'un service
 4. Le **kube-proxy** de chaque node va agir sur les règles **iptables** pour permettre à chaque node de
    1. Traiter le trafic à destination de l'IP du service (IP virtuelle)
    2. Renvoyer le paquet sur un node qui héberge un POD concerné par le service
-5. (option si type = Loadbalancer) : Demande au provider de créer le loadbalanceur pour rediriger le flux vers les nodes sur les bons ports)
+5. (option si type = Loadbalancer) : Demande au provider de créer le loadbalanceur pour rediriger le flux vers les nodes sur les bons ports
 
 ### Cluster IP
 
@@ -35,7 +35,87 @@ Les différentes étapes lors de l'exposition d'un service
 
 ### LoadBalancer
 
-![](<../.gitbook/assets/Network K8S-LoadBalancer.drawio.png>)
+![](<../.gitbook/assets/Network K8S-LoadBalancer.drawio (1).png>)
+
+## Exemple
+
+Les règles IPtables pour chaque service (ip virtuelle + port) sont créées sur chaque nodes ([https://guillaume.fenollar.fr/blog/kubernetes-kube-proxy-iptables/](https://guillaume.fenollar.fr/blog/kubernetes-kube-proxy-iptables/))
+
+### Définition des services
+
+Voici un exemple de service créé sur un cluster (IP d'exposition : 192.168.18.202)
+
+```
+spec:
+  clusterIP: 192.168.18.202
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    k8s-app: kubernetes-dashboard
+```
+
+Cela donne sur le cluster
+
+```
+NAME                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+kubernetes-dashboard   ClusterIP   192.168.18.202   <none>        443/TCP   111d
+guillaume@GuiHome:~$ kubectl get endpoints -nkube-system kubernetes-dashboard
+NAME                   ENDPOINTS            AGE
+kubernetes-dashboard   192.168.34.17:8443   111d
+```
+
+### Regles IPTables
+
+Nous voyons les réglés IPtables sur les nodes pour le service (**IP virtuelle + port**)
+
+```
+Chain KUBE-SERVICES (2 references)KUBE-SVC-XGLOHA7QRQ3V22RZ  tcp  --  0.0.0.0/0  192.168.18.202  /* kube-system/kubernetes-dashboard: cluster IP */ tcp dpt:443
+```
+
+Cette règle renvoi vers les réglés pour chaque endpoint
+
+```
+Chain KUBE-SVC-XGLOHA7QRQ3V22RZ (1 references)
+target     prot opt source               destination         
+KUBE-SEP-NG56X4MU77FFZ5RK  all  --  0.0.0.0/0   0.0.0.0/0  /* kube-system/kubernetes-dashboard: */
+```
+
+Cette règle s'occupe ensuite de faire le DNAT pour envoyer au POD sur le port d'exposition :&#x20;
+
+```
+Chain KUBE-SEP-NG56X4MU77FFZ5RK (1 references)
+target     prot opt source               destination         
+DNAT       tcp  --  0.0.0.0/0  0.0.0.0/0  /* kube-system/kubernetes-dashboard: */ tcp to:192.168.34.17:8443
+```
+
+{% hint style="info" %}
+Si nous avons plusieurs POD nous aurons plusieurs endpoint comme ceci :&#x20;
+
+```
+Chain KUBE-SVC-FAITROITGXHS3QVF (1 references)
+target     prot opt source               destination         
+KUBE-SEP-TJ2CXVZOWVM6T4YV  all  --  0.0.0.0/0  0.0.0.0/0 /* kube-system/coredns:dns-tcp */ 
+     statistic mode random probability 0.50000000000
+KUBE-SEP-HWX34FYUV4Y7PLZG  all  --  0.0.0.0/0  0.0.0.0/0  /* kube-system/coredns:dns-tcp */
+```
+{% endhint %}
+
+### Exposition du service à l’extérieur
+
+Si nous demandons un service de type **NodePort** ou **LoadBalancer**, nous avons une exposition du service sur l'IP des Nodes sur un port spécifique (identique sur chaque node)
+
+Nous pouvons visualiser cela dans la définition du service :&#x20;
+
+```
+NAME                        TYPE          EXTERNAL-IP                        PORT(S)
+nginx-service-loadbalancer  LoadBalancer  *****.eu-west-1.elb.amazonaws.com  80:30039/TCP
+```
+
+Dans cet exemple, le port exposé à l’extérieur pour ce service 80 est le port **30039**
+
+
 
 ## Sources
 
@@ -46,3 +126,7 @@ Les différentes étapes lors de l'exposition d'un service
 {% embed url="https://kubernetes.io/docs/concepts/services-networking/service" %}
 
 {% embed url="https://rtfm.co.ua/en/kubernetes-service-load-balancing-kube-proxy-and-iptables" %}
+
+{% embed url="https://guillaume.fenollar.fr/blog/kubernetes-kube-proxy-iptables" %}
+
+{% embed url="https://aws.amazon.com/fr/premiumsupport/knowledge-center/eks-kubernetes-services-cluster" %}
