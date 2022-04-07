@@ -15,6 +15,8 @@
 
 * [\[EKS\] - Administration cluster](aws/page-2.md)
 * [\[EKS\] - Gestion des IP](aws/eks-gestion-des-ip.md)
+* [\[EKS\] - Gestion des subnets](aws/eks-gestion-des-subnets.md)
+* [\[EKS\] - Gestion des Security Groupes](aws/eks-gestion-des-security-groupes.md)
 * [\[Network\] - Direct Connect](aws/network-direct-connect.md)
 
 ## 🔑 VAULT
