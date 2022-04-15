@@ -27,3 +27,7 @@
 ## 🦊 GitLab
 
 * [Page 1](gitlab/page-1.md)
+
+## test groupe
+
+* [test page](test-groupe/test-page.md)
