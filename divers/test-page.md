@@ -10,7 +10,7 @@ description: Explication simplifier de la solution HA Proxy
 
 Le HA proxy est un système de load balanceur
 
-La configuration repose sur des fichiers de configuration dans **/etc/haproxy** qui s’agrège les un avec les autres grâce à leurs numéro dans le nom (00-xxx ouis 01\_xx, etc...)
+La configuration repose sur des fichiers de configuration dans **/etc/haproxy** qui s’agrège les un avec les autres grâce à leurs numéro dans le nom (00-xxx puis 01\_xx, etc...)
 
 Une bonne pratique est d'utiliser le dossier **/etc/haproxy/lists** pour stocker les éléments permettant d'identifier un flux (IP ou FQDN). Ces fichiers permettrons de créer facilement des ACL
 
