@@ -15,7 +15,7 @@ Pour récupérer vos identifiants (Access KEY) il faut les générer dans le ser
 
 Une fois dans le service IAM, sélectionner l'utilisateur concerné pour générer les identifiants
 
-![](<../.gitbook/assets/image (3) (1).png>)
+<img src="../.gitbook/assets/image.png" alt="" data-size="original">
 {% endhint %}
 
 Vous pouvez ensuite utiliser la commande suivante pour configurer votre CLI : **aws configure**

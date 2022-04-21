@@ -234,7 +234,7 @@ Cela nous donne :&#x20;
 
 Pour la configuration de la méthode K8S sur Vault nous avons besoin des informations suivante :
 
-1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) :  ![](<../.gitbook/assets/image (5).png>)
+1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) :  <img src="../.gitbook/assets/image (4) (1).png" alt="" data-size="original">
 2.  Le token JWT du service account créé pour le besoin de vérification des jeton (dans l'exemple : **vault-injector-dev**) :&#x20;
 
     1. Récupérer le nom de l'instanciation du service account : **export **<mark style="color:blue;">**SA\_NAME**</mark>**=$(kubectl -n vault get sa vault-injector-dev -o jsonpath="{.secrets\[\*]\['name']}")**
