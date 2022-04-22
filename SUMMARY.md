@@ -9,6 +9,7 @@
 * [\[Concept\] - !!! Deployment, ReplicatSet, StatefullSet, DeamonSet](kubernetes/concept-deployment-replicatset-statefullset-deamonset.md)
 * [\[Concepts\] - Service](kubernetes/concepts-service.md)
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
+* [\[Concepts\] - !!! Liveness and Readeness](kubernetes/concepts-liveness-and-readeness.md)
 * [\[Concepts\] - !!! Affinity, Taints and Tolerations](kubernetes/concepts-affinity-taints-and-tolerations.md)
 * [\[Concepts\] - !!!Admission Controller](kubernetes/concepts-admission-controller.md)
 * [\[Configuration\] - K8S + Vault - Utilisation Vault-Injector](kubernetes/configuration-k8s-+-vault-utilisation-vault-injector.md)
