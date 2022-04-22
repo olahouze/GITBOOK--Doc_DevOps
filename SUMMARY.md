@@ -14,6 +14,7 @@
 * [\[Concepts\] - !!!Admission Controller](kubernetes/concepts-admission-controller.md)
 * [\[Configuration\] - !!! Use Secrets from CI + POD Env](kubernetes/configuration-use-secrets-from-ci-+-pod-env.md)
 * [\[Configuration\] - K8S + Vault - Utilisation Vault-Injector](kubernetes/configuration-k8s-+-vault-utilisation-vault-injector.md)
+* [\[SOS\] - Commandes utiles](kubernetes/sos-commandes-utiles.md)
 
 ## 📦 AWS
 
