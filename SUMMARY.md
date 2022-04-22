@@ -6,7 +6,7 @@
 
 * [Documentation Référence](kubernetes/documentation-reference.md)
 * [\[Concepts\] - Gestion des objets](kubernetes/concepts-gestion-des-objets.md)
-* [\[Concept\] - !!! Deployment, ReplicatSet, StatefullSet, DeamonSet](kubernetes/concept-deployment-replicatset-statefullset-deamonset.md)
+* [\[Concept\] - Deployment, ReplicatSet, StatefullSet, DeamonSet](kubernetes/concept-deployment-replicatset-statefullset-deamonset.md)
 * [\[Concepts\] - Service](kubernetes/concepts-service.md)
 * [\[Concepts\] - !!! Liveness and Readeness](kubernetes/concepts-liveness-and-readeness.md)
 * [\[Concepts\] - !!! Affinity, Taints and Tolerations](kubernetes/concepts-affinity-taints-and-tolerations.md)
