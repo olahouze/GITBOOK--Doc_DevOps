@@ -6,6 +6,7 @@
 
 * [Documentation Référence](kubernetes/documentation-reference.md)
 * [\[Concepts\] - Gestion des objets](kubernetes/concepts-gestion-des-objets.md)
+* [\[Concept\] - !!! Deployment, ReplicatSet, StatefullSet, DeamonSet](kubernetes/concept-deployment-replicatset-statefullset-deamonset.md)
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
 * [\[Concepts\] - Service](kubernetes/concepts-service.md)
 * [\[Concepts\] - !!! Affinity, Taints and Tolerations](kubernetes/concepts-affinity-taints-and-tolerations.md)
