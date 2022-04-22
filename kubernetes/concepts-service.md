@@ -1,6 +1,6 @@
 # \[Concepts] - Service
 
-## Description :
+## Description
 
 Les services permettent d'exposer sur <mark style="color:red;">**une IP et un port fixe**</mark> l’accès a des PODs
 
