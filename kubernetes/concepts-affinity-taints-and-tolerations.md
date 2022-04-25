@@ -24,7 +24,24 @@ Ce type d’élément permet d'indiquer, dans la définition d'un POD, sur quel 
 
 Le cluster va chercher à exécuter les PODs avec ces Affinity sur les Nodes appartenant au NodeGroupe correspondant
 
+![](<../.gitbook/assets/K8S Affinity.drawio.png>)
 
+### Taints/Tolerations
+
+Ces éléments permettent de repousser des PODs et des Nodes (= <mark style="color:blue;">**aimant repoussant**</mark>)
+
+Taints
+
+Ce type d’élément est configuré sur les Nodes et indiquent toutes les règles qui empêche un POD de s’exécuter sur ce Node
+
+Il est construit de 3 champs :&#x20;
+
+* **Key** : La Clé spécifie par l’administrateur
+* **Value** : la Valeurs spécifie par l'administrateur
+* **Effect**: Indique l'effet déclenché par cette règle parmi :&#x20;
+  * **PreferNoSchedule** : Préférence pour ne pas prévoir le démarrage du POD sur ce Node
+  * **NoSchedule** : Obligation de ne pas prévoir le démarrage du POD sur ce Node
+  * **NoExecute** : Obligation de ne pas executer le POD sur ce Node
 
 ## Exemple
 
@@ -84,3 +101,5 @@ Il s'agit de <mark style="color:blue;">**preferredDuringSchedulingIgnoredDuringE
 ## Sources
 
 {% embed url="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration" %}
+
+{% embed url="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node#affinity-and-anti-affinity" %}
