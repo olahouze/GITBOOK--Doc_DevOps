@@ -22,15 +22,11 @@ Les workers nodes disposent d'un **label** qui indique à quel NodeGroupe ils ap
 
 Ce type d’élément permet d'indiquer, dans la définition d'un POD, sur quel Node le POD doit s’exécuter.La valeur de l’élément Affinity doit correspondre à des valeurs de NodeGroupe présent dans le cluster
 
-Le cluster va chercher à exécuter les PODs avec ces Affinity sur les Nodes appartenant au NodeGroupe correspondant
-
-![](<../.gitbook/assets/K8S Affinity.drawio.png>)
-
 ### Taints/Tolerations
 
 Ces éléments permettent de repousser des PODs et des Nodes (= <mark style="color:blue;">**aimant repoussant**</mark>)
 
-Taints
+#### Taints
 
 Ce type d’élément est configuré sur les Nodes et indiquent toutes les règles qui empêche un POD de s’exécuter sur ce Node
 
@@ -39,9 +35,25 @@ Il est construit de 3 champs :&#x20;
 * **Key** : La Clé spécifie par l’administrateur
 * **Value** : la Valeurs spécifie par l'administrateur
 * **Effect**: Indique l'effet déclenché par cette règle parmi :&#x20;
-  * **PreferNoSchedule** : Préférence pour ne pas prévoir le démarrage du POD sur ce Node
-  * **NoSchedule** : Obligation de ne pas prévoir le démarrage du POD sur ce Node
-  * **NoExecute** : Obligation de ne pas executer le POD sur ce Node
+  * **PreferNoSchedule** : <mark style="color:red;">**Préférence**</mark> pour ne pas prévoir le démarrage du POD sur ce Node
+  * **NoSchedule** : <mark style="color:red;">**Obligation**</mark> de ne pas prévoir le démarrage du POD sur ce Node
+  * **NoExecute** : <mark style="color:red;">**Obligation**</mark> de ne pas exécuter le POD sur ce Node
+
+#### Tolerations
+
+Ce type d’élément est configuré dans la définition du POD et permet de "**tolérer**" certaines règles **Taints** qui interdisent l’exécution des PODs sur des Nodes.
+
+
+
+## Fonctionnement
+
+### Affinity/NodeGroupe
+
+Le cluster va chercher à exécuter les PODs avec ces Affinity sur les Nodes appartenant au NodeGroupe correspondant
+
+![](<../.gitbook/assets/K8S Affinity.drawio.png>)
+
+### Taints/Tolerations
 
 ## Exemple
 
