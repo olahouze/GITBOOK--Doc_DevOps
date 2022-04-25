@@ -8,7 +8,7 @@
 * [\[Concepts\] - Gestion des objets](kubernetes/concepts-gestion-des-objets.md)
 * [\[Concept\] - Deployment, ReplicatSet, StatefullSet, DeamonSet](kubernetes/concept-deployment-replicatset-statefullset-deamonset.md)
 * [\[Concepts\] - Service](kubernetes/concepts-service.md)
-* [\[Concepts\] - !!! Liveness and Readeness](kubernetes/concepts-liveness-and-readeness.md)
+* [\[Concepts\] - Liveness , Readiness and LifeCycle](kubernetes/concepts-liveness-readiness-and-lifecycle.md)
 * [\[Concepts\] - !!! Affinity, Taints and Tolerations](kubernetes/concepts-affinity-taints-and-tolerations.md)
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
 * [\[Concepts\] - !!! Ingress Controler](kubernetes/concepts-ingress-controler.md)

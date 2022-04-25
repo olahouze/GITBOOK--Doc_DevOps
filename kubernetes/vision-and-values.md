@@ -6,7 +6,7 @@ description: Gestion du stockage dans K8S
 
 Le système K8S est construit pour être le plus agnostique de l’écosystème sous-jacent. La gestion du stockage répond donc à cette architecture grâces aux [StorageClass](vision-and-values.md#storage-class), [PersistenntVolumes (PV)](vision-and-values.md#persistent-volume-pv) et [PersistentVolumesClaim (PVC)](vision-and-values.md#persistent-volume-claim-pvc)
 
-## Définitions :
+## Description :
 
 ### **Storage Class :**&#x20;
 
@@ -289,4 +289,10 @@ Events:        <none>
 
 </details>
 
-###
+## Sources
+
+{% embed url="https://kubernetes.io/docs/concepts/storage/storage-classes" %}
+
+{% embed url="https://kubernetes.io/fr/docs/concepts/storage/persistent-volumes" %}
+
+{% embed url="https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims" %}
