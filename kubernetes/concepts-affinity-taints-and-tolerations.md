@@ -43,6 +43,8 @@ Il est construit de 3 champs :&#x20;
 
 Ce type d’élément est configuré dans la définition du POD et permet de "**tolérer**" certaines règles **Taints** qui interdisent l’exécution des PODs sur des Nodes.
 
+Les tolerations définis dans le POD seront t<mark style="color:red;">**outes les règles Taints qui seront ignorées**</mark> lors du choix de démarrage du POD sur un Node
+
 
 
 ## Fonctionnement
@@ -54,6 +56,12 @@ Le cluster va chercher à exécuter les PODs avec ces Affinity sur les Nodes app
 ![](<../.gitbook/assets/K8S Affinity.drawio.png>)
 
 ### Taints/Tolerations
+
+Lors de la demande d’exécution d'un POD, pour chaque node, le cluster va faire la <mark style="color:red;">**soustraction**</mark> des Taints et des Tolerations entre le Node et le POD
+
+Le résultat restant lui permettra de prendre une décision concernant l’exécution du POD sur ce Node
+
+![](<../.gitbook/assets/Taint Toleration.drawio.png>)
 
 ## Exemple
 
