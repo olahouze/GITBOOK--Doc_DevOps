@@ -1,6 +1,6 @@
 # \[Concept] - Deployment, ReplicatSet, StatefullSet, DeamonSet
 
-## Description
+## Description :
 
 Pour conserver une cohérence entre les éléments présents sur le cluster et les éléments que l'administrateur a demandé dans ses spécifications, K8S utilise plusieurs types d'objets
 
