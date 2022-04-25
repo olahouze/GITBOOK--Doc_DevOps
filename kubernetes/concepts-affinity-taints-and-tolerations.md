@@ -1,4 +1,4 @@
-# \[Concepts] - !!! Affinity/NodeGroupe et Taints/Tolerations
+# \[Concepts] - Affinity/NodeGroupe et Taints/Tolerations
 
 ## Description
 
@@ -8,25 +8,17 @@ Il est possible de configurer les nodes et les PODs avec des éléments spécifi
 
 Pour cela, K8S utilise les elements suivants :
 
-### Affinity/NodeGroupe
-
-Ces éléments permettent de regrouper des PODs avec des Nodes (= <mark style="color:red;">**aimant attirant**</mark>)
-
-#### NodeGroupe
+### NodeGroupe
 
 Ce type d’élément permet d'identifier des worker nodes dans le cluster en les estampillant avec une étiquette particulière.
 
 Les workers nodes disposent d'un **label** qui indique à quel NodeGroupe ils appartiennent
 
-#### Affinity
+### Affinity
 
 Ce type d’élément permet d'indiquer, dans la définition d'un POD, sur quel Node le POD doit s’exécuter.La valeur de l’élément Affinity doit correspondre à des valeurs de NodeGroupe présent dans le cluster
 
-### Taints/Tolerations
-
-Ces éléments permettent de repousser des PODs et des Nodes (= <mark style="color:blue;">**aimant repoussant**</mark>)
-
-#### Taints
+### Taints
 
 Ce type d’élément est configuré sur les Nodes et indiquent toutes les règles qui empêche un POD de s’exécuter sur ce Node
 
@@ -39,7 +31,7 @@ Il est construit de 3 champs :&#x20;
   * **NoSchedule** : <mark style="color:red;">**Obligation**</mark> de ne pas prévoir le démarrage du POD sur ce Node
   * **NoExecute** : <mark style="color:red;">**Obligation**</mark> de ne pas exécuter le POD sur ce Node
 
-#### Tolerations
+### Tolerations
 
 Ce type d’élément est configuré dans la définition du POD et permet de "**tolérer**" certaines règles **Taints** qui interdisent l’exécution des PODs sur des Nodes.
 
@@ -51,11 +43,15 @@ Les tolerations définis dans le POD seront t<mark style="color:red;">**outes le
 
 ### Affinity/NodeGroupe
 
+Ces éléments permettent de regrouper des PODs avec des Nodes (= <mark style="color:red;">**aimant attirant**</mark>)
+
 Le cluster va chercher à exécuter les PODs avec ces Affinity sur les Nodes appartenant au NodeGroupe correspondant
 
 ![](<../.gitbook/assets/K8S Affinity.drawio.png>)
 
 ### Taints/Tolerations
+
+Ces éléments permettent de repousser des PODs et des Nodes (= <mark style="color:blue;">**aimant repoussant**</mark>)
 
 Lors de la demande d’exécution d'un POD, pour chaque node, le cluster va faire la <mark style="color:red;">**soustraction**</mark> des Taints et des Tolerations entre le Node et le POD
 
@@ -116,7 +112,25 @@ Dans cet exemple nous avons :&#x20;
 Il s'agit de <mark style="color:blue;">**preferredDuringSchedulingIgnoredDuringExecution,**</mark> donc si aucun node ne correspond à ces demandes, le POD sera executé sur n'importe quel autre POD qui respecte seulement la demande <mark style="color:blue;">**requiredDuringSchedulingIgnoredDuringExecution**</mark>&#x20;
 {% endhint %}
 
+### Taints
 
+Voici comment configurer une Taint sur un worker node
+
+```
+kubectl taint nodes node1 key1=value1:NoSchedule-
+```
+
+### Toleration
+
+Voici comment définir une Toleration dans la définition d'un POD
+
+```
+tolerations:
+- key: "key1"
+  operator: "Equal"
+  value: "value1"
+  effect: "NoSchedule"
+```
 
 ## Sources
 
