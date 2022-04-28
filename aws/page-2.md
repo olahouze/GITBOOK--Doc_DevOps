@@ -31,6 +31,16 @@ Vous pouvez tester la configuration de votre CLI avec la commande **: aws sts ge
 
 ```
 
+### Gestion des profiles
+
+Il est possible de créer plusieurs profils avec AWS CLI pour ne pas ressaisir a chaque fois les identifiants : **aws configure --profile \[name profil]**
+
+{% hint style="info" %}
+Lorsque vous avez creer les différents profiles vous pouvez en definir un par defaut avec : **export AWS\_DEFAULT\_PROFILE=\[name profil]**
+
+
+{% endhint %}
+
 ## Habilitations
 
 Pour manager les clusters EKS vous devez disposer des droits suffisants à 2 niveaux
@@ -98,6 +108,30 @@ mapUsers:
 ## Configuration Kubectl
 
 Une fois toutes les habilitations OK vous pouvez générer le fichier de configuration vous permettant de se connecter au cluster : **aws eks --region \[region] update-kubeconfig --name \[cluster\_name]**
+
+{% hint style="info" %}
+Vous pouvez ajouter dans le fichier **kubeconfig** l'utilisation d'un profile AWS pour chaque cluster avec l'option **env:**
+
+```
+name: arn:aws:eks:eu-west-3:11526055XXXX:cluster/cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - --region
+      - eu-west-3
+      - eks
+      - get-token
+      - --cluster-name
+      - aws-common-production
+      command: aws
+      env:
+      - name: AWS_PROFILE
+        value: profil1
+      interactiveMode: IfAvailable
+      provideClusterInfo: false
+```
+{% endhint %}
 
 ## **Changer de contexte Kubectl**&#x20;
 
