@@ -13,6 +13,7 @@
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
 * [\[Concepts\] - !!! Ingress Controler](kubernetes/concepts-ingress-controler.md)
 * [\[Concepts\] - !!!Admission Controller](kubernetes/concepts-admission-controller.md)
+* [\[Concepts\] - Scale UP, Scale DOWN and Manage Scheduling](kubernetes/concepts-scale-up-scale-down-and-manage-scheduling.md)
 * [\[Configuration\] - !!! Use Secrets from CI + POD Env](kubernetes/configuration-use-secrets-from-ci-+-pod-env.md)
 * [\[Configuration\] - !!! Use ConfigMap from CI + POD Env](kubernetes/configuration-use-configmap-from-ci-+-pod-env.md)
 * [\[Configuration\] - K8S + Vault - Utilisation Vault-Injector](kubernetes/configuration-k8s-+-vault-utilisation-vault-injector.md)
