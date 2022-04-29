@@ -70,6 +70,15 @@ La règle prend comme paramètre les valeurs de ressources du node (CPU/Memoire/
 
 ![Descheduleur - Low Node Utilization](../.gitbook/assets/Descheduleur.drawio.png)
 
+#### Remove POD Violation Node affinity/taint ([https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodeaffinity](https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodeaffinity) / [https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodetaints](https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodetaints))
+
+Ces règles permettent de vérifier régulièrement sur le cluster si les déploiement **passées** sont toujours cohérent avec les affinity de Nodes et les Taints entre les POD et les Nodes
+
+* Si un Node a perdue un <mark style="color:purple;">label X</mark> après le déploiement de POD : La règle **RemovePodsViolatingNodeAffinity** permet de redéployer les PODs présent sur ce node qui ont besoin de fonctionner sur un Node avec le <mark style="color:purple;">label X</mark>
+* Si un Node a perdue une <mark style="color:blue;">Taint Y</mark> après le déploiement de POD : La règle **RemovePodsViolatingNodeTaints** permet de redéployer les PODs présent sur ce node qui ont besoin de fonctionner sur un Node avec une <mark style="color:blue;">Taint Y</mark>
+
+![](<../.gitbook/assets/Descheduleur-Violation Node Affinity Taint.drawio.png>)
+
 ## Sources
 
 {% embed url="https://github.com/kubernetes/autoscaler" %}
