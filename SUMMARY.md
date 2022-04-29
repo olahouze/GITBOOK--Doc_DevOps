@@ -13,6 +13,7 @@
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
 * [\[Concepts\] - !!! Ingress Controler](kubernetes/concepts-ingress-controler.md)
 * [\[Concepts\] - Scale UP, Scale DOWN and Manage Scheduling](kubernetes/concepts-scale-up-scale-down-and-manage-scheduling.md)
+* [\[Concepts\] - !!! External DNS with Ingress Controller](kubernetes/concepts-external-dns-with-ingress-controller.md)
 * [\[Concepts\] - !!!Admission Controller](kubernetes/concepts-admission-controller.md)
 * [\[Configuration\] - !!! Use Secrets from CI + POD Env](kubernetes/configuration-use-secrets-from-ci-+-pod-env.md)
 * [\[Configuration\] - !!! Use ConfigMap from CI + POD Env](kubernetes/configuration-use-configmap-from-ci-+-pod-env.md)
