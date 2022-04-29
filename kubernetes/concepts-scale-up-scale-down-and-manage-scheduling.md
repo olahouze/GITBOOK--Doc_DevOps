@@ -20,7 +20,7 @@ Si un cluster est <mark style="color:blue;">sous utilisé</mark>, K8S ne va pas 
 
 Pour palier ce manque, il existe 2 projets :&#x20;
 
-* **Autoscaler** : Gestion de l'ajout/suppression de workers nodes ([https://github.com/kubernetes/autoscaler](https://github.com/kubernetes/autoscaler))
+* **Cluster-Autoscaler** : Gestion de l'ajout/suppression de workers nodes ([https://github.com/kubernetes/autoscaler](https://github.com/kubernetes/autoscaler))
 * **Descheduleur** : Déplacement des PODs dans un cluster pour optimiser l'utilisation des ressources et le fonctionnement du projet Autoscaler
 
 ## Fonctionnement
@@ -45,7 +45,7 @@ Si vous avez plusieurs NodesGroupes vous pouvez mettre en place des priorités :
 
 ![Scale UP](../.gitbook/assets/Autoscaler.drawio.png)
 
-#### Scal DOWN
+#### Scale DOWN
 
 Lorsque le cluster dispose de worker node qui ne sont plus utilisés par des PODs "applicatifs" (sans prise en compte des DeamonSet) l'autoscaler va prévoir une extinction du worker node
 
@@ -53,6 +53,25 @@ Lors de la vérification périodique de l'autoscaler, si des workers nodes sont 
 
 ![Scale DOWN](<../.gitbook/assets/Autoscaler-Scale DOWN.drawio.png>)
 
+### Descheduleur
+
+Ce projet permet de reorganiser les PODs d'un cluster sur les nodes apres leurs demarrage en fonction de certaines regles ([https://github.com/kubernetes-sigs/descheduler#policy-and-strategies](https://github.com/kubernetes-sigs/descheduler#policy-and-strategies))
+
+Il a pour objectif d'optimiser l'utilisation des ressources
+
+#### Low Node utilization ([https://github.com/kubernetes-sigs/descheduler#lownodeutilization](https://github.com/kubernetes-sigs/descheduler#lownodeutilization))
+
+Cette règle permet de déplacer les PODs d'un node A vers un node B dans le cas le node B dispose d'assez de ressource pour récupérer la charge du node A.
+
+La règle prend comme paramètre les valeurs de ressources du node (CPU/Memoire/POD) que nous ne souhaitons pas dépasser (**targetThresholds**) et les valeurs considérées comme "sous utilisation" du node (**thresholds**)
+
+* Si notre Node dispose de <mark style="color:red;">**TOUTES**</mark> les ressources en <mark style="color:red;">**dessous**</mark> du seuil **thresholds** les PODS de ce Node vont être redémarrés (evicts) pour qu'ils soient redéployés sur un autre Node
+* Si notre Node dispose <mark style="color:red;">**d'AU MOINS UNE**</mark> ressource en <mark style="color:red;">**dessus**</mark> du seuil **targetThresholds** les PODS de ce Node vont être redémarrés (evicts) pour qu'ils soient redéployés sur un autre Node
+
+![Descheduleur - Low Node Utilization](../.gitbook/assets/Descheduleur.drawio.png)
+
 ## Sources
 
 {% embed url="https://github.com/kubernetes/autoscaler" %}
+
+{% embed url="https://github.com/kubernetes-sigs/descheduler" %}
