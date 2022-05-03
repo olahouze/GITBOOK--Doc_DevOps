@@ -2,17 +2,25 @@
 
 ## Description
 
-Lorsque plusieurs PODs doivent s’exécuter pour un même besoin (replicats dans un deployment ou statefulset) le scheduleur va essayer de **repartir** les PODs sur tous les Nodes éligibles pour faire fonctionner le POD
+Lorsque plusieurs PODs doivent s’exécuter pour un même besoin (replicats dans un deployment ou statefullset) le scheduleur va essayer de <mark style="color:blue;">**repartir**</mark> les PODs sur tous les Nodes éligibles pour faire fonctionner le POD
 
-Il peut être nécessaire de faire fonctionner 2 PODs sur un même nodes (**exemple** : pour accéder au même volume depuis 2 PODs en même temps)
+Pour gérer cela en fonction de nos besoins nous utilisons :
 
 ### Pod Affinity
 
 Il est possible de specifier à un POD de fonctionner sur le même node qu'un autre POD
 
+Il peut être nécessaire de faire fonctionner différents PODs sur un même node&#x20;
+
+**exemple** : pour accéder au même volume, <mark style="color:blue;">qui ne supporte pas l'acces concurrent,</mark> depuis plusieurs PODs en même temps
+
 ### Pod Antiaffinity
 
 Il est possible de spécifier à un POD de <mark style="color:red;">**ne pas**</mark> fonctionner sur le même node qu'un autre POD
+
+Il peut être nécessaire de faire fonctionner différents PODs sur différents nodes et de garantir que plusieurs composants dans  plusieurs deployment/statefullset ne s’exécutent pas sur le même node
+
+**exemple** : Le deployment de plusieurs PODs Applicatif ne doivent pas êtres déployés sur les mêmes Nodes que les PODs SGBD (afin de ne pas perdre toute l'application en cas de dysfonctionnement d'un Node qui contiendrait les PODs SGBD et Applicatifs)
 
 ## Fonctionnement
 
