@@ -1,6 +1,6 @@
 # \[Concepts] - !!! External DNS with Ingress Controller
 
-Expliquer fonctionnement
+Expliquer fonctionnement avec suite logique
 
 ![](<../.gitbook/assets/Ingress and External DNS.drawio.png>)
 

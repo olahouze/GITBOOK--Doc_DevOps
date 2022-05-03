@@ -10,6 +10,7 @@
 * [\[Concepts\] - Service](kubernetes/concepts-service.md)
 * [\[Concepts\] - Liveness , Readiness and LifeCycle](kubernetes/concepts-liveness-readiness-and-lifecycle.md)
 * [\[Concepts\] - Affinity/NodeGroupe et Taints/Tolerations](kubernetes/concepts-affinity-taints-and-tolerations.md)
+* [\[Concepts\] - Pod Affinity / Antiaffinity](kubernetes/concepts-pod-affinity-antiaffinity.md)
 * [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
 * [\[Concepts\] - !!! Ingress Controler](kubernetes/concepts-ingress-controler.md)
 * [\[Concepts\] - Scale UP, Scale DOWN and Manage Scheduling](kubernetes/concepts-scale-up-scale-down-and-manage-scheduling.md)
