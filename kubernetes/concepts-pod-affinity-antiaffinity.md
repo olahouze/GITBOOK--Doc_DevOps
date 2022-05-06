@@ -8,9 +8,8 @@ Pour gérer cela en fonction de nos besoins nous utilisons :
 
 ### Pod Affinity
 
-Il est possible de specifier à un POD de fonctionner sur le même node qu'un autre POD
-
-Il peut être nécessaire de faire fonctionner différents PODs sur un même node&#x20;
+* Il est possible de spécifier à un POD de fonctionner sur le même node qu'un autre POD
+* Il est possible de spécifier à un POD de fonctionner sur la même AZ que le node hébergeant un autre POD
 
 **exemple** : pour accéder au même volume, <mark style="color:blue;">qui ne supporte pas l'acces concurrent,</mark> depuis plusieurs PODs en même temps
 
@@ -66,9 +65,17 @@ spec:
         topologyKey: topology.kubernetes.io/zone
 ```
 
+{% hint style="info" %}
 Dans cet exemple, nous demandons que les PODs fonctionnent sur l'environnement qui contient les labels "**security=S1**"
 
-Ces labels peuvent êtres directement sur un Node (non conseillé pour éviter les conflit avec les nodes Affinity) ou sur des PODs qui tournent sur un Node
+Lorsque le label est identifié sur un environnement, nous utilisons le label indiqué dans **topologyKey** comme <mark style="color:red;">**référence**</mark>
+
+Donc dans notre cas, lorsque le cluster identifie les PODs contenant le label "**security=S1**" il utilise le label **topology.kubernetes.io/zone** associé comme référence.&#x20;
+
+Tous les Nodes qui disposent d'un label **topology.kubernetes.io/zone** identique sont éligibles pour faire fonctionner le POD
+{% endhint %}
+
+Ces labels peuvent êtres directement sur un Node (non conseillé pour éviter les conflit avec les nodes Affinity) ou sur des PODs
 
 ```
 podAffinity:
@@ -86,9 +93,15 @@ podAffinity:
       topologyKey: kubernetes.io/hostname
 ```
 
+{% hint style="info" %}
 Dans cette exemple on demande au POD de fonctionner sur l'environnement qui contient les labels "**app.kubernetes.io/instance=prometheus**" et "**app.kubernetes.io/name=grafana**"
 
-Ici nous utilisons des labels présents dans d'autres PODs pour que les nouveaux POD s’exécutent toujours sur le même Node que ces autres PODs
+Lorsque le cluster identifie les PODs contenant le label **app.kubernetes.io/instance=prometheus**" et "**app.kubernetes.io/name=grafana**" il utilise le label **kubernetes.io/hostname** associé comme référence.&#x20;
+
+Tous les Nodes qui disposent d'un label **kubernetes.io/hostname** identique sont éligibles pour faire fonctionner le POD
+
+Dans ce cas de figure, <mark style="color:red;">le hostname du Node étant unique</mark>, nous somme certain que le POD va fonctionner sur le même Node que le POD contenant ces labels
+{% endhint %}
 
 ## Sources
 
