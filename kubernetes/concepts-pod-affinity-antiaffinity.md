@@ -34,6 +34,10 @@ Il existe, comme pour les nodes affinity, 2 possibilités :&#x20;
 * **preferedDuringSchedulingIgnoredDuringExecution**: Le POD devrait respecter la règle mais peut être schedulé ailleurs si la règle ne peut être respecté
 
 {% hint style="danger" %}
+**Les règles de nodeAffinity / toleration **<mark style="color:red;">**sont exécutées AVANT**</mark>** les regles de podAffinity**
+{% endhint %}
+
+{% hint style="warning" %}
 Les règles **nodeAffinity / toleration / podAffinity** sont toutes évaluées lors de la prise de décision. Il faut faire attention que toutes ces règles <mark style="color:red;">**ne rentrent pas en conflit**</mark>
 
 **Exemple** : si une règle de **PodAffinity** _requiredDuringSchedulingIgnoredDuringExecution_  demande au POD de fonctionner au même endroit qu'un autre POD qui se trouve sur le Node A **MAIS** que le Node A ne respecte pas la règle de **NodeAffinity** _requiredDuringSchedulingIgnoredDuringExecution_, le POD <mark style="color:red;">ne démarrera pas</mark>
