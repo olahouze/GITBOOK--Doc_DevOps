@@ -16,6 +16,7 @@
 * [\[Concepts\] - Scale UP, Scale DOWN and Manage Scheduling](kubernetes/concepts-scale-up-scale-down-and-manage-scheduling.md)
 * [\[Concepts\] - !!! External DNS with Ingress Controller](kubernetes/concepts-external-dns-with-ingress-controller.md)
 * [\[Concepts\] - !!!Admission Controller](kubernetes/concepts-admission-controller.md)
+* [\[Concepts - Docker\] - Gestion des "layers"](kubernetes/concepts-docker-gestion-des-layers.md)
 * [\[Configuration\] - !!! Use Secrets from CI + POD Env](kubernetes/configuration-use-secrets-from-ci-+-pod-env.md)
 * [\[Configuration\] - !!! Use ConfigMap from CI + POD Env](kubernetes/configuration-use-configmap-from-ci-+-pod-env.md)
 * [\[Configuration\] - K8S + Vault - Utilisation Vault-Injector](kubernetes/configuration-k8s-+-vault-utilisation-vault-injector.md)
