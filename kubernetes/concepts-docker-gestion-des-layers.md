@@ -22,7 +22,13 @@ Il est possible que la layer suivante soir le POD
 
 Pour gérer ce système, Docker utiliser les drivers overlay
 
-Ce système repose sur des dossiers dans **/var/lib/docker/overlay2** qui représentent chacun une layerDans chacun des dossier nous avons
+Ce système repose sur des dossiers dans **/var/lib/docker/overlay2** qui représentent chacun une layer
+
+Dans chacun des dossier nous avons :&#x20;
+
+* **link** : Fichier contenant l'identifiant de la layer "0"&#x20;
+* **lower**: Fichier contenant la liste des layers précédentes
+* **diff:** Dossiers contenant les éléments du file system modifiés par la layer &#x20;
 
 ## Exemple
 
