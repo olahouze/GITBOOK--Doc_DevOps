@@ -35,6 +35,8 @@ Vous pouvez tester la configuration de votre CLI avec la commande **: aws sts ge
 
 Il est possible de créer plusieurs profils avec AWS CLI pour ne pas ressaisir a chaque fois les identifiants : **aws configure --profile \[name profil]**
 
+Nous pouvons lister tous les profiles existants avec : **aws configure list-profiles**
+
 {% hint style="info" %}
 Lorsque vous avez creer les différents profiles vous pouvez en definir un par defaut avec : **export AWS\_DEFAULT\_PROFILE=\[name profil]**
 
