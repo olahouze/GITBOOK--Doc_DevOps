@@ -35,10 +35,6 @@
 
 * [Utilisation CLI Distante](vault/utilisation-cli-distante.md)
 
-## 🦊 GitLab
-
-* [Page 1](gitlab/page-1.md)
-
 ## 🎚 Divers
 
-* [HA Proxy](divers/test-page.md)
+* [HA Proxy](divers/HA-proxy.md)
