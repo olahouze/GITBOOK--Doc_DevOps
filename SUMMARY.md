@@ -24,8 +24,7 @@
 
 ## 📦 AWS
 
-* [\[EKS\] - Administration cluster](aws/page-2.md)
-* [Copy of \[EKS\] - Administration cluster](aws/page-2-1.md)
+* [\[EKS\] - Administration cluster](aws/eks-administration-cluster.md)
 * [\[EKS\] - Gestion des IP](aws/eks-gestion-des-ip.md)
 * [\[EKS\] - !!! Gestion des subnets](aws/eks-gestion-des-subnets.md)
 * [\[EKS\] - !!! Gestion des Security Groupes](aws/eks-gestion-des-security-groupes.md)
