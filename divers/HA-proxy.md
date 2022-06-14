@@ -6,7 +6,7 @@ description: Explication simplifier de la solution HA Proxy
 
 ## Fonctionnement
 
-![](<../.gitbook/assets/HA Proxy - SEMIPUB-Default.drawio.png>)
+![](<../.gitbook/assets/HA Proxy - SEMIPUB-Default.png>)
 
 Le HA proxy est un système de load balanceur
 

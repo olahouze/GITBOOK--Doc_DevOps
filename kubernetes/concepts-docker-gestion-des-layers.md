@@ -12,11 +12,11 @@ Chaque layers s'appuie sur les éléments fournis par la layer précédente et r
 
 La somme de la layer précédente et des différences apportées par la layer courante est exposée à la layer supérieur
 
-![](../.gitbook/assets/Docker\_container-layers.jpg)
+![](../.gitbook/assets/Docker--container-layers.jpg)
 
 Il est possible que la layer suivante soir le POD
 
-![](../.gitbook/assets/Docker\_sharing-layers.jpg)
+![](../.gitbook/assets/Docker--sharing-layers.jpg)
 
 ### Driver overlay2
 

@@ -43,7 +43,7 @@ Si le choix est fait d'utiliser l'API **Privée :**&#x20;
 
 Cette API est exposée par les Master sur une URL que nous pouvons visualiser dans : **EKS > Clusters > \[nom cluster] > Configuration > Details**&#x20;
 
-![](../.gitbook/assets/01.png)
+![](<../.gitbook/assets/K8S--AWS Console-01.png>)
 
 Subnet&#x20;
 
