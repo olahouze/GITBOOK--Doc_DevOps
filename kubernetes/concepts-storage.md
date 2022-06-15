@@ -2,11 +2,11 @@
 description: Gestion du stockage dans K8S
 ---
 
-# \[Concepts] - Stockage
+# \[Concepts] - Storage
 
 ## Description :
 
-Le système K8S est construit pour être le plus agnostique de l’écosystème sous-jacent. La gestion du stockage répond donc à cette architecture grâces aux [StorageClass](vision-and-values.md#storage-class), [PersistenntVolumes (PV)](vision-and-values.md#persistent-volume-pv) et [PersistentVolumesClaim (PVC)](vision-and-values.md#persistent-volume-claim-pvc)
+Le système K8S est construit pour être le plus agnostique de l’écosystème sous-jacent. La gestion du stockage répond donc à cette architecture grâces aux [StorageClass](concepts-storage.md#storage-class), [PersistenntVolumes (PV)](concepts-storage.md#persistent-volume-pv) et [PersistentVolumesClaim (PVC)](concepts-storage.md#persistent-volume-claim-pvc)
 
 ### **Storage Class :**
 
@@ -90,7 +90,7 @@ spec:
 
 #### Static provisioning
 
-Voici la définition d'un PVC qui demande un PV correspondant à celui créé précédemment [ici](vision-and-values.md#persistent-volume). Comme nous utilisons la storageClassName = manual, le cluster va automatiquement associé ce PVC sur le PV répondant à ce besoin
+Voici la définition d'un PVC qui demande un PV correspondant à celui créé précédemment [ici](concepts-storage.md#persistent-volume). Comme nous utilisons la storageClassName = manual, le cluster va automatiquement associé ce PVC sur le PV répondant à ce besoin
 
 <details>
 

@@ -11,7 +11,7 @@
 * [\[Concepts\] - Liveness , Readiness and LifeCycle](kubernetes/concepts-liveness-readiness-and-lifecycle.md)
 * [\[Concepts\] - Affinity/NodeGroupe et Taints/Tolerations](kubernetes/concepts-affinity-taints-and-tolerations.md)
 * [\[Concepts\] - Pod Affinity / Antiaffinity](kubernetes/concepts-pod-affinity-antiaffinity.md)
-* [\[Concepts\] - Stockage](kubernetes/vision-and-values.md)
+* [\[Concepts\] - Storage](kubernetes/concepts-storage.md)
 * [\[Concepts\] - !!! Ingress Controler](kubernetes/concepts-ingress-controler.md)
 * [\[Concepts\] - Scale UP, Scale DOWN and Manage Scheduling](kubernetes/concepts-scale-up-scale-down-and-manage-scheduling.md)
 * [\[Concepts\] - !!! External DNS with Ingress Controller](kubernetes/concepts-external-dns-with-ingress-controller.md)
@@ -28,7 +28,7 @@
 * [\[EKS\] - Gestion des IP](aws/eks-gestion-des-ip.md)
 * [\[EKS\] - !!! Gestion des subnets](aws/eks-gestion-des-subnets.md)
 * [\[EKS\] - !!! Gestion des Security Groupes](aws/eks-gestion-des-security-groupes.md)
-* [\[EKS\]  Gestion des volumes](aws/eks-gestion-des-volumes.md)
+* [\[EKS\] Gestion des volumes](aws/eks-gestion-des-volumes.md)
 * [\[Network\] - Direct Connect](aws/network-direct-connect.md)
 
 ## 🔑 VAULT
