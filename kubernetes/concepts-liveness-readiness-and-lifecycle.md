@@ -41,7 +41,7 @@ Il est important de configurer un Readiness différent du Liveness car les actio
 
 ## Fonctionnement
 
-![](<../.gitbook/assets/lifecycle pod.png>)
+![](<../.gitbook/assets/K8S--lifecycle pod.png>)
 
 * **Init container** : Ce conteneur réalise des actions pour préparer l'environnement du conteneur principale. Une fois les actions terminées il s’éteint généralement
 * **Post start kock** : Action au démarrage du conteneur principale

@@ -385,7 +385,7 @@ spec:
 
 </details>
 
-Le résultat est le suivant :
+**Le résultat est le suivant :**
 
 ```
 kubectl -n test exec -it webapp -- sh
@@ -443,7 +443,7 @@ spec:
 
 </details>
 
-Résultat :
+**Résultat :**
 
 ```
 kubectl -n test exec -it webapp -- sh
@@ -517,7 +517,7 @@ spec:
 
 </details>
 
-Résultat
+**Résultat**
 
 ```
 kubectl -n test exec -it webapp -- sh

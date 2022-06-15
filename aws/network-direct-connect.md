@@ -18,11 +18,11 @@ Pour cela, nous devons réaliser les objets suivants
 
 ### Avec Virtual Private Gateway
 
-![](<../.gitbook/assets/image (2).png>)
+![](<../.gitbook/assets/AWS--Direct Connect-01.png>)
 
 ### Avec Transit Gateway
 
-![](<../.gitbook/assets/image (4).png>)
+![](<../.gitbook/assets/AWS--Transite Gateway-01.png>)
 
 ## Sources : &#x20;
 

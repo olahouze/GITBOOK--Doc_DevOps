@@ -47,7 +47,7 @@ Ces éléments permettent de regrouper des PODs avec des Nodes (= <mark style="c
 
 Le cluster va chercher à exécuter les PODs avec ces Affinity sur les Nodes appartenant au NodeGroupe correspondant
 
-![](<../.gitbook/assets/K8S Affinity.drawio.png>)
+![](../.gitbook/assets/K8S--Affinity.png)
 
 ### Taints/Tolerations
 
@@ -57,7 +57,7 @@ Lors de la demande d’exécution d'un POD, pour chaque node, le cluster va fair
 
 Le résultat restant lui permettra de prendre une décision concernant l’exécution du POD sur ce Node
 
-![](<../.gitbook/assets/Taint Toleration.drawio.png>)
+![](<../.gitbook/assets/K8S--Taint Toleration.png>)
 
 ## Exemple
 

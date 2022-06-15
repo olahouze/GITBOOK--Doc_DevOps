@@ -31,11 +31,11 @@ Les différentes étapes lors de l'exposition d'un service
 
 ### Cluster IP
 
-![](<../.gitbook/assets/Network K8S-Cluster IP.drawio.png>)
+![](<../.gitbook/assets/K8S--Network K8S-Cluster IP.png>)
 
 ### LoadBalancer
 
-![](<../.gitbook/assets/Network K8S-LoadBalancer.drawio (1).png>)
+![](<../.gitbook/assets/K8S--Network K8S-LoadBalancer.png>)
 
 ## Exemple
 
@@ -121,11 +121,11 @@ Si ce service est exposé derrière un AWS Loadbalancer voici **** le paramétra
 
 Ici notre LB **ab4367c2ff9ee4332b4177dfc86df9ac-21320c7a8fbd5518.elb.eu-west-3.amazonaws.com**
 
-![](<../.gitbook/assets/capture 01.png>)
+![](<../.gitbook/assets/K8S--AWS Console-03.png>)
 
 La redirection se fait sur un groupe que nous pouvons visualiser
 
-![](<../.gitbook/assets/capture 02.png>)
+![](<../.gitbook/assets/K8S--AWS Console-02.png>)
 
 Nous constatons donc bien que le LB renvoi bien vers un groupe de node (contenant tous les nodes du cluster) sur le **Nodeport** créé pour le service (ici <mark style="color:red;">**31992**</mark>**)**
 

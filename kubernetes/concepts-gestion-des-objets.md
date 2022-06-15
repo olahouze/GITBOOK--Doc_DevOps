@@ -4,7 +4,7 @@
 
 La gestion des objets dans K8S s'effectue comme suite :&#x20;
 
-![](<../.gitbook/assets/API K8S.drawio.png>)
+![Gestion des objets](<../.gitbook/assets/K8S--API K8S.png>)
 
 
 

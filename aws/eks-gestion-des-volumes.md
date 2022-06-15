@@ -9,7 +9,7 @@ Les workers nodes EKS sont des instances EC2 qui peuvent utiliser des volumes de
 
 ### EBS
 
-![](../.gitbook/assets/Storage-EBS.drawio.png)
+![](../.gitbook/assets/AWS--Storage-EBS.png)
 
 1. Plusieurs PODs **fonctionnant sur le même node** peuvent accéder au même volume EBS car les écritures concurrentes sont gérées par le node
 2. Les PODs sur **des nodes différents** ne peuvent pas accéder au même volume car celui-ci est attaché exclusivement au node
@@ -18,7 +18,7 @@ Les workers nodes EKS sont des instances EC2 qui peuvent utiliser des volumes de
 
 ### EFS
 
-![](../.gitbook/assets/Storage-EFS.drawio.png)
+![](../.gitbook/assets/AWS--Storage-EFS.png)
 
 
 
