@@ -19,9 +19,9 @@ Pour que le système fonctionne il faut que :
 
 ## Fonctionnement <a href="#vault+k8s-fonctionnement" id="vault+k8s-fonctionnement"></a>
 
-Voici l'explication du fonctionnement :&#x20;
+Voici l'explication du fonctionnement :
 
-![](<../.gitbook/assets/image (6).png>)
+![](<../.gitbook/assets/VAULT---Injector 2.png>)
 
 1. Le POD de l'application va demander à l'API Vault des acces aux secrets (en pressentant un jeton JWT associé au service account utilisé dans le POD)
 2. Le service Vault demande vérification du JWT à l'API K8S du cluster (pour récupérer le namespace du service account et vérifier que le jeton JWT est le bon)
@@ -30,7 +30,7 @@ Voici l'explication du fonctionnement :&#x20;
 
 Pour être plus précis, dans le POD il y a un **sidecar** qui réalise ces actions (le vault-agent-injector) qui fonctionne comme cela :
 
-![](<../.gitbook/assets/image (2) (1).png>)
+![](<../.gitbook/assets/VAULT---Injector 1.png>)
 
 \
 C'est le sidecar lors de l'initialisation qui va récupérer les secrets dans Vault et peupler le **/vault/secrets** du POD
@@ -184,7 +184,7 @@ Pour cela nous utilisons le même helm chart que nous avons utilisé pour instal
 
 Ce helm va installer les deux éléments, le serveur vault et le composant vault-injector, et nous n'utiliseront que le **vault-injector** sur les clusters qui veulent accéder au serveur Vault installé sur le premier cluster (il est possible de supprimer les pods "vault" sur ces clusters car nous ne les utiliseront pas)
 
-**Note** : Vous pouvez vérifier que le cluster dispose bien des pods qui correspondent **:**&#x20;
+**Note** : Vous pouvez vérifier que le cluster dispose bien des pods qui correspondent **:**
 
 ```
 NAME                                        READY   STATUS    RESTARTS   AGE
@@ -209,7 +209,7 @@ Pour cela nous devons activer la méthode d'authentification **kubernetes** dans
 
 #### Pre requis : <a href="#vault+k8s-prerequis" id="vault+k8s-prerequis"></a>
 
-<mark style="color:purple;">**Nomenclature :**</mark>&#x20;
+<mark style="color:purple;">**Nomenclature :**</mark>
 
 Pour simplifier la maintenance on suivra le schema de nommage
 
@@ -222,10 +222,9 @@ _Par exemple:_ pour une application utilisant
 * Le compte technique "vault-injector-dev"
 * Dans le namespace "test"
 * Sur le cluser "Common" de "Développement"
-* Chez AWS \
+* Chez AWS \\
 
-
-Cela nous donne :&#x20;
+Cela nous donne :
 
 * Politique : **kubernetes\_aws\_common\_dev\_vault-injector-dev**
 * Role **: test\_test-sa**
@@ -234,23 +233,23 @@ Cela nous donne :&#x20;
 
 Pour la configuration de la méthode K8S sur Vault nous avons besoin des informations suivante :
 
-1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) :  <img src="../.gitbook/assets/image (4) (1).png" alt="" data-size="original">
-2.  Le token JWT du service account créé pour le besoin de vérification des jeton (dans l'exemple : **vault-injector-dev**) :&#x20;
+1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) : <img src="../.gitbook/assets/AWS---URL API EKS.png" alt="" data-size="original">
+2.  Le token JWT du service account créé pour le besoin de vérification des jeton (dans l'exemple : **vault-injector-dev**) :
 
     1. Récupérer le nom de l'instanciation du service account : **export **<mark style="color:blue;">**SA\_NAME**</mark>**=$(kubectl -n vault get sa vault-injector-dev -o jsonpath="{.secrets\[\*]\['name']}")**
-    2. Récupérer le token du service account : **export **<mark style="color:blue;">**SA\_TOKEN**</mark>**=$(kubectl -n vault get secret **<mark style="color:blue;">**$SA\_NAME**</mark>** -o jsonpath="{.data.token}" | base64 --decode; echo)**
+    2. Récupérer le token du service account : **export **<mark style="color:blue;">**SA\_TOKEN**</mark>**=$(kubectl -n vault get secret $SA\_NAME**\*\* -o jsonpath="{.data.token}" | base64 --decode; echo)\*\*
 
-    ****
-3. Le Certificat du service account créé pour ce besoin : <mark style="color:blue;">**SA\_CERT**</mark>**=$(kubectl -n vault get secret **<mark style="color:blue;">**$SA\_NAME**</mark>** -o jsonpath="{.data\['ca\\.crt']}" | base64 --decode; echo)**
+    ***
+3. Le Certificat du service account créé pour ce besoin : <mark style="color:blue;">**SA\_CERT**</mark>**=$(kubectl -n vault get secret $SA\_NAME**\*\* -o jsonpath="{.data\['ca\\.crt']}" | base64 --decode; echo)\*\*
 
 {% hint style="danger" %}
 Il existe un problème de mise en forme de certificat avec cette méthode : [https://stackoverflow.com/questions/14560393/ssl-certificate-to-json/14580203#14580203](https://stackoverflow.com/questions/14560393/ssl-certificate-to-json/14580203#14580203)
 
-Il faut donc stocker dans un fichier le résultat du certificat (celui de la variable <mark style="color:blue;">**SA\_CERT)**</mark>** ** et remplacer les espaces entre les entête et le payload par des retours a la ligne
+Il faut donc stocker dans un fichier le résultat du certificat (celui de la variable <mark style="color:blue;">**SA\_CERT)**</mark>\*\* \*\* et remplacer les espaces entre les entête et le payload par des retours a la ligne
 
 **Avant** : `-----BEGIN CERT----- XXXXXX -----END CERTIFICATE-----`
 
-**`Apres`**`:`&#x20;
+**`Apres`**`:`
 
 `-----BEGIN CERT-----`
 
@@ -273,14 +272,13 @@ vault write auth/kubernetes_aws_common_dev_vault-injector-dev/config \
     token_reviewer_jwt="$SA_TOKEN" \
     kubernetes_host=https://<URL API K8S>:<your TCP port or blank for 443> \
     kubernetes_ca_cert=$SA_CERT
-
 ```
 
 Dans vault sur la méthode authentification il faut configurer les champs suivants:
 
 * **Kubernetes host** : url de l'api du cluster kubernetes qui demande les secrets
 * **Kubernetes CA Certificate** : partie publique du certificat du service account (préférer l'upload d'un fichier à la partie texte) que vous avez récupéré précédemment dans <mark style="color:blue;">**$SA\_CERT**</mark>
-* **JWT Issuer:**  pas nécessaire
+* **JWT Issuer:** pas nécessaire
 * **Token Reviewer JWT:** partie privé (token) du service account que vous avez récupéré précédemment avec <mark style="color:blue;">**$SA\_TOKEN**</mark>
 
 ### Création des rôles <a href="#vault+k8s-creationdesroles" id="vault+k8s-creationdesroles"></a>
@@ -294,14 +292,13 @@ Renseigner les champs suivants:
 * **Bound service account names** : nom du service account
 * **Bound service account namespaces**: namespace autorisé à manipuler les secrets
 * **Generated Token's Policies**: policy vault à appliquer
-* **Do Not Attach 'default' Policy To Generated Tokens**: cocher cette case pour ne pas ajouter la policy default (paramètre avancé du token)\
-
+* **Do Not Attach 'default' Policy To Generated Tokens**: cocher cette case pour ne pas ajouter la policy default (paramètre avancé du token)\\
 
 **GUI** : Access → Editer la méthode Kubertenes correspondant→ onglet Role → Create Role → Renseigner les parametres → Save
 
-![](<../.gitbook/assets/image (1).png>)
+![](<../.gitbook/assets/VAULT---Create role.png>)
 
-![](<../.gitbook/assets/image (3).png>)
+![](<../.gitbook/assets/VAULT---Choose Policy.png>)
 
 **CLI** :
 
@@ -408,7 +405,6 @@ Nous pouvons récupérer différents secrets dans différents dossiers :
 <summary><strong>Pod test récupération Vault - Multiple Fichier</strong></summary>
 
 ```
-
 apiVersion: v1
 kind: Pod
 metadata:
@@ -512,7 +508,6 @@ spec:
       key: dedicated
       operator: Equal
       value: common
-
 ```
 
 </details>
@@ -532,5 +527,4 @@ Port=3306
 User=adm
 Password=admin_xyze
 Database=app
-
 ```

@@ -15,7 +15,7 @@ Pour récupérer vos identifiants (Access KEY) il faut les générer dans le ser
 
 Une fois dans le service IAM, sélectionner l'utilisateur concerné pour générer les identifiants
 
-<img src="../.gitbook/assets/image.png" alt="" data-size="original">
+<img src="../.gitbook/assets/AWS---IAM Access Key user.png" alt="" data-size="original">
 {% endhint %}
 
 Vous pouvez ensuite utiliser la commande suivante pour configurer votre CLI : **aws configure**
@@ -28,7 +28,6 @@ Vous pouvez tester la configuration de votre CLI avec la commande **: aws sts ge
     "Account": "1152605546XX",
     "Arn": "arn:aws:iam::1152605546XX:user/olahouze"
 }
-
 ```
 
 ### Gestion des profiles
@@ -39,8 +38,6 @@ Nous pouvons lister tous les profiles existants avec : **aws configure list-prof
 
 {% hint style="info" %}
 Lorsque vous avez creer les différents profiles vous pouvez en definir un par defaut avec : **export AWS\_DEFAULT\_PROFILE=\[name profil]**
-
-
 {% endhint %}
 
 ## Habilitations
@@ -51,9 +48,9 @@ Pour manager les clusters EKS vous devez disposer des droits suffisants à 2 niv
 
 Vous devez disposer des droits nécessaires à vos actions sur le service EKS
 
-**Exemple :**&#x20;
+**Exemple :**
 
-![](<../.gitbook/assets/image (2) (1) (1).png>)
+![](<../.gitbook/assets/AWS---IAM Rights EKS.png>)
 
 ### Droit EKS
 
@@ -102,7 +99,6 @@ mapUsers:
   - "system:masters"
   "userarn": "arn:aws:iam::115260554xxx:user/toto"
   "username": "toto"
-
 ```
 
 </details>
@@ -135,11 +131,11 @@ name: arn:aws:eks:eu-west-3:11526055XXXX:cluster/cluster
 ```
 {% endhint %}
 
-## **Changer de contexte Kubectl**&#x20;
+## **Changer de contexte Kubectl**
 
 Il est possible de configurer son kubectl avec plusieurs accès à différents clusters
 
-Dans ce cas nous pouvons changer de contexte facilement de la manière suivante :&#x20;
+Dans ce cas nous pouvons changer de contexte facilement de la manière suivante :
 
 1. Visualiser les différents contexte : **kubectl config get-contexts**
 
