@@ -12,11 +12,9 @@ Pour cela
 2. Exporter la variable d'environnement permettant d’accéder au Vault concerné. (exemple : **VAULT\_ADDR="https://vault.mycompagny.net**")
 3. Récupérer votre Token d’authentification depuis la GUI de Vault une fois authentifié avec votre méthode
 
-![Recuperation du Token utilisateur](<../.gitbook/assets/vault token.png>)
+![Recuperation du Token utilisateur](<../.gitbook/assets/VAULT---Copy token.png>)
 
 4\. Utiliser la méthode **vault login** (donner votre token dans la CLI pour se connecter)
-
-
 
 Vous pouvez maintenant utiliser la CLI Vault depuis votre poste
 
@@ -30,5 +28,4 @@ k8s-ci-deploy
 talend-deploy
 tyreupload-pirelli-deploy
 velero-deploy
-
 ```
