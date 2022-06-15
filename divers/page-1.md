@@ -1,3 +1,3 @@
 # Page 1
 
-![](<../.gitbook/assets/image (1) (1).png>)
+![](<../.gitbook/assets/K8S---Storage PVC.png>)

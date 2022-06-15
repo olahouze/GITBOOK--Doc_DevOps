@@ -8,42 +8,38 @@ description: Gestion du stockage dans K8S
 
 Le système K8S est construit pour être le plus agnostique de l’écosystème sous-jacent. La gestion du stockage répond donc à cette architecture grâces aux [StorageClass](vision-and-values.md#storage-class), [PersistenntVolumes (PV)](vision-and-values.md#persistent-volume-pv) et [PersistentVolumesClaim (PVC)](vision-and-values.md#persistent-volume-claim-pvc)
 
-### **Storage Class :**&#x20;
+### **Storage Class :**
 
 **Définition** : [https://kubernetes.io/docs/concepts/storage/storage-classes/](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
 Une Storage Classe représente les spécificités d'un média qui va supporter les PV. et permettre d'offrir différentes performances utilisable par les PVC
 
-### **Persistent Volume (PV) :**&#x20;
+### **Persistent Volume (PV) :**
 
 **Définition** :[https://kubernetes.io/fr/docs/concepts/storage/persistent-volumes/](https://kubernetes.io/fr/docs/concepts/storage/persistent-volumes/)
 
 Un PV est un espace de stockage de donnée manipulable dans un cluster K8S. Il permet de proposer une quantité définie d'espace de stockage que les PODs pouront utiliser.
 
-### **Persistent Volume Claim (PVC) :**&#x20;
+### **Persistent Volume Claim (PVC) :**
 
 **Définition** : [https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 
 Un PVC est un objet K8S qui peut être appelé par un POD pour demander de l'espace sur un PV
 
-
-
 ## Fonctionnement
 
 Il existe 2 méthodes pour utiliser ces objets
 
-* **Static Provisioning** : Les PV doivent  êtres créés manuellement par les OPS pour être utilisables par les PVC
+* **Static Provisioning** : Les PV doivent êtres créés manuellement par les OPS pour être utilisables par les PVC
 * **Dynamic Provisioning** : Les PV sont automatiquement générés lors de l'appel d'un PVC en utilisant une Storage Classe
 
-![](<../.gitbook/assets/image (1) (1).png>)
-
-
+![](<../.gitbook/assets/K8S---Storage PVC.png>)
 
 ## Exemples
 
 ### Storage Classe
 
-Voici la définition d'une Storage Classe sur du stockage AWS  service EBS (type = io1) : [https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs](https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs)
+Voici la définition d'une Storage Classe sur du stockage AWS service EBS (type = io1) : [https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs](https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs)
 
 <details>
 
@@ -116,7 +112,7 @@ spec:
 
 </details>
 
-#### **Dynamic Provisioning**&#x20;
+#### **Dynamic Provisioning**
 
 Voici la définition d'un PVC qui va utiliser une Storage Classe permettant de générer à la demande les PV (ici sur AWS). Dans ce cas le driver utilisé dans la storage classe va s'occuper de demander à l'API AWS de créer les volumes adéquats et générer le PV
 
@@ -152,7 +148,7 @@ efs-sc          efs.csi.aws.com         Delete          Immediate              f
 gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   true                   501d
 ```
 
-Nous avons sur ce cluster 2 Storage Classes (nous pouvons les visualiser avec : **`kubectl describe StorageClass XXX`** :&#x20;
+Nous avons sur ce cluster 2 Storage Classes (nous pouvons les visualiser avec : **`kubectl describe StorageClass XXX`** :
 
 <details>
 
@@ -190,7 +186,6 @@ MountOptions:          <none>
 ReclaimPolicy:         Delete
 VolumeBindingMode:     WaitForFirstConsumer
 Events:                <none>
-
 ```
 
 </details>
@@ -205,7 +200,7 @@ pv-16442277-d8e0-43ad-ab8b-5587bcc149da   50Gi       RWO            Retain      
 pv-188c5ada-8385-4ba9-92a9-9a67bcf5a84e   6Gi        RWO            Delete           Bound    superset/superset                                      gp2                     9d
 ```
 
-Nous avons sur ce cluster plusieurs PV (nous pouvons les visualiser avec : **`kubectl describe pv XXX`**:&#x20;
+Nous avons sur ce cluster plusieurs PV (nous pouvons les visualiser avec : **`kubectl describe pv XXX`**:
 
 <details>
 
@@ -238,7 +233,6 @@ Source:
     Partition:  0
     ReadOnly:   false
 Events:         <none>
-
 ```
 
 </details>
@@ -254,7 +248,7 @@ prometheus           prometheus-grafana                        Bound    pv-e3099
 prometheus           prometheus-prometheus-kube-prometheus     Bound    pv-bb409f4b-7519-4375-ab22-1e63be040dd2   20Gi       RWO            gp2            156d
 ```
 
-Nous avons sur ce cluster plusieurs PV (nous pouvons les visualiser avec : **`kubectl describe pvc XXX -n [namespace]`**:&#x20;
+Nous avons sur ce cluster plusieurs PV (nous pouvons les visualiser avec : **`kubectl describe pvc XXX -n [namespace]`**:
 
 <details>
 
@@ -284,7 +278,6 @@ Access Modes:  RWO
 VolumeMode:    Filesystem
 Used By:       prometheus-grafana-97d686d56-rrwbj
 Events:        <none>
-
 ```
 
 </details>
