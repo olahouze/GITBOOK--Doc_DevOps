@@ -35,7 +35,7 @@ Il existe 2 méthodes pour utiliser ces objets
 * **Static Provisioning** : Les PV doivent  êtres créés manuellement par les OPS pour être utilisables par les PVC
 * **Dynamic Provisioning** : Les PV sont automatiquement générés lors de l'appel d'un PVC en utilisant une Storage Classe
 
-![](<../.gitbook/assets/K8S--Storage PVC.png>)
+![](<../.gitbook/assets/image (1) (1).png>)
 
 
 

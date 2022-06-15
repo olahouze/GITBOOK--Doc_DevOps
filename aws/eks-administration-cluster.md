@@ -15,7 +15,7 @@ Pour récupérer vos identifiants (Access KEY) il faut les générer dans le ser
 
 Une fois dans le service IAM, sélectionner l'utilisateur concerné pour générer les identifiants
 
-<img src="../.gitbook/assets/AWS--IAM Access Key user.png" alt="" data-size="original">
+<img src="../.gitbook/assets/image.png" alt="" data-size="original">
 {% endhint %}
 
 Vous pouvez ensuite utiliser la commande suivante pour configurer votre CLI : **aws configure**
@@ -53,7 +53,7 @@ Vous devez disposer des droits nécessaires à vos actions sur le service EKS
 
 **Exemple :**&#x20;
 
-![](<../.gitbook/assets/AWS--IAM Rights EKS.png>)
+![](<../.gitbook/assets/image (2) (1) (1).png>)
 
 ### Droit EKS
 
