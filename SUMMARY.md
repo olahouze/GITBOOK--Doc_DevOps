@@ -37,5 +37,4 @@
 
 ## 🎚 Divers
 
-* [Page 1](divers/page-1.md)
 * [HA Proxy](divers/HA-proxy.md)
