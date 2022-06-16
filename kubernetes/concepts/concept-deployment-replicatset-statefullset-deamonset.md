@@ -1,4 +1,4 @@
-# \[Concept] - Deployment, ReplicatSet, StatefullSet, DeamonSet
+# Deployment, ReplicatSet, StatefullSet, DeamonSet
 
 ## Description
 
@@ -41,13 +41,13 @@ Dans un Deployment, les POD **n'ont pas d'identité** et lors d'un redémarrage 
 {% hint style="info" %}
 Cela signifie, par exemple, que les volumes de stockages qui sont associés avec l'ID d'un POD ne peuvent pas se rattacher sur le "**même**" POD après un redémarrage/mis a jour d'un **Deployment**
 
-En effet **** il s'agit de nouveaux PODs qui seront démarrés pour remplir le même rôle que l'ancien (serveur web, serveur applicatif, sgbd, etc...) et l'association **ID Pod <=>Volume** n'est plus possible
+En effet \*\*\*\* il s'agit de nouveaux PODs qui seront démarrés pour remplir le même rôle que l'ancien (serveur web, serveur applicatif, sgbd, etc...) et l'association **ID Pod <=>Volume** n'est plus possible
 {% endhint %}
 
 Un **StatefullSet** permet de réaliser plusieurs choses différentes par rapport au Deployment et notamment:
 
 * <mark style="color:blue;">**Conservation de l'identité du POD**</mark> : lors d'un redémarrage les ID de PODs gérés par un **StatefullSet** <mark style="color:red;">sont conservés</mark>
-* <mark style="color:blue;">**Ordre de redémarrage**</mark>** ** : Lorsque X POD doivent demarrer/s'arreter, le **StatefullSet** effectue les actions sur les PODs l'un après l'autre et n'agit <mark style="color:red;">que si les N-1 autres PODs sont dans l’état attendu</mark>
+* <mark style="color:blue;">**Ordre de redémarrage**</mark>\*\* \*\* : Lorsque X POD doivent demarrer/s'arreter, le **StatefullSet** effectue les actions sur les PODs l'un après l'autre et n'agit <mark style="color:red;">que si les N-1 autres PODs sont dans l’état attendu</mark>
 
 ### DeamonSet
 

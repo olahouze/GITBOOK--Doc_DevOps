@@ -1,4 +1,4 @@
-# \[Concepts] - Service
+# Service
 
 ## Description
 

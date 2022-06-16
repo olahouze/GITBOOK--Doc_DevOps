@@ -1,4 +1,4 @@
-# \[Concepts - Docker] - Gestion des "layers"
+# \[Docker] - Gestion des "layers"
 
 ## Description
 

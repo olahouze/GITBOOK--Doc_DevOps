@@ -2,7 +2,7 @@
 description: Interconnexion entre K8S et Vault pour recuperer des secrets
 ---
 
-# \[Configuration] - K8S + Vault - Utilisation Vault-Injector
+# K8S + Vault - Utilisation Vault-Injector
 
 Il est possible d'utiliser vault en mode "**injecteur**" pour récupérer des secrets à l'aide d'un side-car : [https://www.vaultproject.io/docs/platform/k8s/injector](https://www.vaultproject.io/docs/platform/k8s/injector)
 

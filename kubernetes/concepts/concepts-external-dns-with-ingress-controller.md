@@ -1,4 +1,4 @@
-# \[Concepts] - !!! External DNS with Ingress Controller
+# !!! External DNS with Ingress Controller
 
 Expliquer fonctionnement avec suite logique
 

@@ -2,7 +2,7 @@
 description: Liste de documentation de référence
 ---
 
-# Documentation Référence
+# 📖 Documentation Référence
 
 ## Documentation Fondamentale
 
@@ -16,13 +16,9 @@ description: Liste de documentation de référence
 
 **Description** : Explication du fonctionnement de l'admission controller
 
-
-
 **Lien** : [https://sysdig.com/blog/kubernetes-admission-controllers/](https://sysdig.com/blog/kubernetes-admission-controllers/)
 
 **Description** : Démonstration de l'utilisation des admissions controller
-
-
 
 ## Certifications
 

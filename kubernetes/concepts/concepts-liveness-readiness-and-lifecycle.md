@@ -1,4 +1,4 @@
-# \[Concepts] - Liveness , Readiness and LifeCycle
+# Liveness , Readiness and LifeCycle
 
 ## Description
 

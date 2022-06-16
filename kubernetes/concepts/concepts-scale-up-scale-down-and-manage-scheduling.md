@@ -2,7 +2,7 @@
 description: Outils pour gérer les ressources d'un cluster K8S
 ---
 
-# \[Concepts] - Scale UP, Scale DOWN and Manage Scheduling
+# Scale UP, Scale DOWN and Manage Scheduling
 
 ## Description
 

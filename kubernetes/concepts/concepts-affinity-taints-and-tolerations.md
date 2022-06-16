@@ -1,4 +1,4 @@
-# \[Concepts] - Affinity/NodeGroupe et Taints/Tolerations
+# Affinity/NodeGroupe et Taints/Tolerations
 
 ## Description
 
