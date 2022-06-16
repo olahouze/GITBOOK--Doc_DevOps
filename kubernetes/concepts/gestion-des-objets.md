@@ -1,12 +1,10 @@
-# \[Concepts] - Gestion des objets
+# Gestion des objets
 
 ## Fonctionnement
 
-La gestion des objets dans K8S s'effectue comme suite :&#x20;
+La gestion des objets dans K8S s'effectue comme suite :
 
-![Gestion des objets](<../.gitbook/assets/K8S--API K8S.png>)
-
-
+![Gestion des objets](<../../.gitbook/assets/K8S--API K8S.png>)
 
 **Etape 1** : L'utilisateur demande a l'api K8S (par le biais de l'apiserver) la mise en place d'un objet. Pour cela il fourni un fichier de "**spec**" à K8S.
 
@@ -18,19 +16,17 @@ Ce fichier doit contenir un minimum d'information obligatoire
 
 **Etape 3** : Si toutes les étapes de validations sont OK (pas d'erreur dans le fichier "**spec**", validation des "admissions controller, etc...) les informations sont stockés dans la base **etcd**
 
-**Etape 4 :** Le cluster va mettre tout en oeuvre pour que son état corresponde aux demandes dans le fichier "**spec**".&#x20;
+**Etape 4 :** Le cluster va mettre tout en oeuvre pour que son état corresponde aux demandes dans le fichier "**spec**".
 
 {% hint style="info" %}
 Nous pouvons visualiser dans le cluster à chaque instant la différence entre le **status** du cluster et la demande de "**spec**".
 
-Les différents objets disposent des informations :&#x20;
+Les différents objets disposent des informations :
 
 * **Spec** : demande cible
 * **Status** : état réel dans le cluster
 {% endhint %}
 
-
-
-## Sources&#x20;
+## Sources
 
 [https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)

@@ -18,7 +18,7 @@ Si des <mark style="color:blue;">ressources sont manquantes</mark>, les nouveaux
 Si un cluster est <mark style="color:blue;">sous utilisé</mark>, K8S ne va pas éteindre un worker node qui n'utilise pas ses ressources, celui-ci va resté actif et non utilisé
 {% endhint %}
 
-Pour palier ce manque, il existe 2 projets :&#x20;
+Pour palier ce manque, il existe 2 projets :
 
 * **Cluster-Autoscaler** : Gestion de l'ajout/suppression de workers nodes ([https://github.com/kubernetes/autoscaler](https://github.com/kubernetes/autoscaler))
 * **Descheduleur** : Déplacement des PODs dans un cluster pour optimiser l'utilisation des ressources et le fonctionnement du projet Autoscaler
@@ -43,7 +43,7 @@ Vous devez indiquer dans la configuration le(s) nom(s) du (des) NodesGroupes à 
 Si vous avez plusieurs NodesGroupes vous pouvez mettre en place des priorités : [https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/expander/priority/readme.md](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/expander/priority/readme.md)
 {% endhint %}
 
-![Scale UP](../.gitbook/assets/K8S--Autoscaler.png)
+![Scale UP](../../.gitbook/assets/K8S--Autoscaler.png)
 
 #### Scale DOWN
 
@@ -51,7 +51,7 @@ Lorsque le cluster dispose de worker node qui ne sont plus utilisés par des POD
 
 Lors de la vérification périodique de l'autoscaler, si des workers nodes sont inutilisés, il va prévoir la suppression des ceux-ci.
 
-![Scale DOWN](<../.gitbook/assets/K8S--Autoscaler-Scale DOWN.png>)
+![Scale DOWN](<../../.gitbook/assets/K8S--Autoscaler-Scale DOWN.png>)
 
 ### Descheduleur
 
@@ -68,7 +68,7 @@ La règle prend comme paramètre les valeurs de ressources du node (CPU/Memoire/
 * Si notre Node dispose de <mark style="color:red;">**TOUTES**</mark> les ressources en <mark style="color:red;">**dessous**</mark> du seuil **thresholds** les PODS de ce Node vont être redémarrés (evicts) pour qu'ils soient redéployés sur un autre Node
 * Si notre Node dispose <mark style="color:red;">**d'AU MOINS UNE**</mark> ressource en <mark style="color:red;">**dessus**</mark> du seuil **targetThresholds** les PODS de ce Node vont être redémarrés (evicts) pour qu'ils soient redéployés sur un autre Node
 
-![Descheduleur - Low Node Utilization](../.gitbook/assets/K8S--Descheduleur.png)
+![Descheduleur - Low Node Utilization](../../.gitbook/assets/K8S--Descheduleur.png)
 
 #### Remove POD Violation Node affinity/taint ([https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodeaffinity](https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodeaffinity) / [https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodetaints](https://github.com/kubernetes-sigs/descheduler#removepodsviolatingnodetaints))
 
@@ -77,7 +77,7 @@ Ces règles permettent de vérifier régulièrement sur le cluster si les déplo
 * Si un Node a perdue un <mark style="color:purple;">label X</mark> après le déploiement de POD : La règle **RemovePodsViolatingNodeAffinity** permet de redéployer les PODs présent sur ce node qui ont besoin de fonctionner sur un Node avec le <mark style="color:purple;">label X</mark>
 * Si un Node a perdue une <mark style="color:blue;">Taint Y</mark> après le déploiement de POD : La règle **RemovePodsViolatingNodeTaints** permet de redéployer les PODs présent sur ce node qui ont besoin de fonctionner sur un Node avec une <mark style="color:blue;">Taint Y</mark>
 
-![](<../.gitbook/assets/K8S--Descheduleur-Violation Affinity Taint.png>)
+![](<../../.gitbook/assets/K8S--Descheduleur-Violation Affinity Taint.png>)
 
 ## Sources
 

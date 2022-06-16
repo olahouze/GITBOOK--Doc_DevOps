@@ -12,11 +12,11 @@ Chaque layers s'appuie sur les éléments fournis par la layer précédente et r
 
 La somme de la layer précédente et des différences apportées par la layer courante est exposée à la layer supérieur
 
-![](../.gitbook/assets/Docker--container-layers.jpg)
+![](../../.gitbook/assets/Docker--container-layers.jpg)
 
 Il est possible que la layer suivante soir le POD
 
-![](../.gitbook/assets/Docker--sharing-layers.jpg)
+![](../../.gitbook/assets/Docker--sharing-layers.jpg)
 
 ### Driver overlay2
 
@@ -24,11 +24,11 @@ Pour gérer ce système, Docker utiliser les drivers overlay
 
 Ce système repose sur des dossiers dans **/var/lib/docker/overlay2** qui représentent chacun une layer
 
-Dans chacun des dossier nous avons :&#x20;
+Dans chacun des dossier nous avons :
 
-* **link** : Fichier contenant l'identifiant de la layer "0"&#x20;
+* **link** : Fichier contenant l'identifiant de la layer "0"
 * **lower**: Fichier contenant la liste des layers précédentes
-* **diff:** Dossiers contenant les éléments du file system modifiés par la layer &#x20;
+* **diff:** Dossiers contenant les éléments du file system modifiés par la layer
 * **merged** : Contient les éléments du File Systeme qui cumulent les layers précédentes et les modification de la layer courante (file systeme présenté à la couche supérieure)
 
 ## Exemple
@@ -84,7 +84,7 @@ drwxr-xr-x 4 root root 33 May 11 13:50 run
 drwxr-xr-x 3 root root 21 May 9 14:14 var
 ```
 
-Comme cette couche est associé au POD c'est donc ces dossiers qui sont utilisées pour lire/ecrire par le POD&#x20;
+Comme cette couche est associé au POD c'est donc ces dossiers qui sont utilisées pour lire/ecrire par le POD
 
 ### 2--Cas du **superset\_superset-worker-6976b99c66-fnlql\_superset:**
 
@@ -100,9 +100,9 @@ drwxrwxrwt 3 root root 27 May 10 17:23 tmp
 drwxr-xr-x 3 root root 19 Feb 28 00:00 usr
 ```
 
-### Conclusion&#x20;
+### Conclusion
 
-Dans le cas de  **airflow-scheduler\_airflow-scheduler**  nous pouvons constaté dans la couche  **5f314b630e7439fbcd6517e6bb8c52020976e6b6979118065edc67784ebe551c**  que les données sont rajoutés régulièrement dans **/diff/opt/airflow/logs/scheduler**
+Dans le cas de **airflow-scheduler\_airflow-scheduler** nous pouvons constaté dans la couche **5f314b630e7439fbcd6517e6bb8c52020976e6b6979118065edc67784ebe551c** que les données sont rajoutés régulièrement dans **/diff/opt/airflow/logs/scheduler**
 
 ```
 root@ip-10-1-9-168 scheduler]# pwd

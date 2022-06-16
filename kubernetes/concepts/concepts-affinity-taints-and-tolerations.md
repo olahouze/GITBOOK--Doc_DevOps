@@ -22,11 +22,11 @@ Ce type d’élément permet d'indiquer, dans la définition d'un POD, sur quel 
 
 Ce type d’élément est configuré sur les Nodes et indiquent toutes les règles qui empêche un POD de s’exécuter sur ce Node
 
-Il est construit de 3 champs :&#x20;
+Il est construit de 3 champs :
 
 * **Key** : La Clé spécifie par l’administrateur
 * **Value** : la Valeurs spécifie par l'administrateur
-* **Effect**: Indique l'effet déclenché par cette règle parmi :&#x20;
+* **Effect**: Indique l'effet déclenché par cette règle parmi :
   * **PreferNoSchedule** : <mark style="color:red;">**Préférence**</mark> pour ne pas prévoir le démarrage du POD sur ce Node
   * **NoSchedule** : <mark style="color:red;">**Obligation**</mark> de ne pas prévoir le démarrage du POD sur ce Node
   * **NoExecute** : <mark style="color:red;">**Obligation**</mark> de ne pas exécuter le POD sur ce Node
@@ -37,8 +37,6 @@ Ce type d’élément est configuré dans la définition du POD et permet de "**
 
 Les tolerations définis dans le POD seront t<mark style="color:red;">**outes les règles Taints qui seront ignorées**</mark> lors du choix de démarrage du POD sur un Node
 
-
-
 ## Fonctionnement
 
 ### Affinity/NodeGroupe
@@ -47,7 +45,7 @@ Ces éléments permettent de regrouper des PODs avec des Nodes (= <mark style="c
 
 Le cluster va chercher à exécuter les PODs avec ces Affinity sur les Nodes appartenant au NodeGroupe correspondant
 
-![](../.gitbook/assets/K8S--Affinity.png)
+![](../../.gitbook/assets/K8S--Affinity.png)
 
 ### Taints/Tolerations
 
@@ -57,7 +55,7 @@ Lors de la demande d’exécution d'un POD, pour chaque node, le cluster va fair
 
 Le résultat restant lui permettra de prendre une décision concernant l’exécution du POD sur ce Node
 
-![](<../.gitbook/assets/K8S--Taint Toleration.png>)
+![](<../../.gitbook/assets/K8S--Taint Toleration.png>)
 
 ## Exemple
 
@@ -101,15 +99,15 @@ spec:
             - another-node-label-value
 ```
 
-Dans cet exemple nous avons :&#x20;
+Dans cet exemple nous avons :
 
 * <mark style="color:blue;">**requiredDuringSchedulingIgnoredDuringExecution**</mark> : <mark style="color:red;">**Oblige**</mark> le POD a s’exécuter sur un node avec le label <mark style="color:red;">**eks.amazonaws.com/nodegroup = common-spot**</mark>
-* <mark style="color:blue;">**preferredDuringSchedulingIgnoredDuringExecution**</mark> : <mark style="color:red;">**Préférence**</mark> pour que le POD s’exécute :&#x20;
+* <mark style="color:blue;">**preferredDuringSchedulingIgnoredDuringExecution**</mark> : <mark style="color:red;">**Préférence**</mark> pour que le POD s’exécute :
   * En priorité (poids de 10) sur les Nodes avec le label **another-node-label-key-high = another-node-label-value-high**
   * Si pas possible, en seconde priorité (poids 1) sur les Nodes avec le label **another-node-label-key = another-node-label-value**
 
 {% hint style="info" %}
-Il s'agit de <mark style="color:blue;">**preferredDuringSchedulingIgnoredDuringExecution,**</mark> donc si aucun node ne correspond à ces demandes, le POD sera executé sur n'importe quel autre POD qui respecte seulement la demande <mark style="color:blue;">**requiredDuringSchedulingIgnoredDuringExecution**</mark>&#x20;
+Il s'agit de <mark style="color:blue;">**preferredDuringSchedulingIgnoredDuringExecution,**</mark> donc si aucun node ne correspond à ces demandes, le POD sera executé sur n'importe quel autre POD qui respecte seulement la demande <mark style="color:blue;">**requiredDuringSchedulingIgnoredDuringExecution**</mark>
 {% endhint %}
 
 ### Taints

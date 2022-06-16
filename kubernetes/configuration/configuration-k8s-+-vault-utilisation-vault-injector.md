@@ -21,7 +21,7 @@ Pour que le système fonctionne il faut que :
 
 Voici l'explication du fonctionnement :
 
-![](<../.gitbook/assets/VAULT--Injector 2.png>)
+![](<../../.gitbook/assets/VAULT--Injector 2.png>)
 
 1. Le POD de l'application va demander à l'API Vault des acces aux secrets (en pressentant un jeton JWT associé au service account utilisé dans le POD)
 2. Le service Vault demande vérification du JWT à l'API K8S du cluster (pour récupérer le namespace du service account et vérifier que le jeton JWT est le bon)
@@ -30,7 +30,7 @@ Voici l'explication du fonctionnement :
 
 Pour être plus précis, dans le POD il y a un **sidecar** qui réalise ces actions (le vault-agent-injector) qui fonctionne comme cela :
 
-![](<../.gitbook/assets/VAULT--Injector 1.png>)
+![](<../../.gitbook/assets/VAULT--Injector 1.png>)
 
 \
 C'est le sidecar lors de l'initialisation qui va récupérer les secrets dans Vault et peupler le **/vault/secrets** du POD
@@ -233,7 +233,7 @@ Cela nous donne :
 
 Pour la configuration de la méthode K8S sur Vault nous avons besoin des informations suivante :
 
-1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) : <img src="../.gitbook/assets/AWS--URL API EKS.png" alt="" data-size="original">
+1. L'URL de l'API du cluster qui va interroger le Vault. (sur AWS on peut le trouver ici ) : <img src="../../.gitbook/assets/AWS--URL API EKS.png" alt="" data-size="original">
 2.  Le token JWT du service account créé pour le besoin de vérification des jeton (dans l'exemple : **vault-injector-dev**) :
 
     1. Récupérer le nom de l'instanciation du service account : **export **<mark style="color:blue;">**SA\_NAME**</mark>**=$(kubectl -n vault get sa vault-injector-dev -o jsonpath="{.secrets\[\*]\['name']}")**
@@ -296,9 +296,9 @@ Renseigner les champs suivants:
 
 **GUI** : Access → Editer la méthode Kubertenes correspondant→ onglet Role → Create Role → Renseigner les parametres → Save
 
-![](<../.gitbook/assets/VAULT--Create role.png>)
+![](<../../.gitbook/assets/VAULT--Create role.png>)
 
-![](<../.gitbook/assets/VAULT--Choose Policy.png>)
+![](<../../.gitbook/assets/VAULT--Choose Policy.png>)
 
 **CLI** :
 

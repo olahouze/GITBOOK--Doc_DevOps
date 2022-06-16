@@ -2,7 +2,7 @@
 
 Expliquer fonctionnement avec suite logique
 
-![](<../.gitbook/assets/K8S--Ingress and External DNS.png>)
+![](<../../.gitbook/assets/K8S--Ingress and External DNS.png>)
 
 ## Sources
 
