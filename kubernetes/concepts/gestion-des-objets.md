@@ -1,5 +1,13 @@
 # Gestion des objets
 
+## Description
+
+L'ensemble des éléments internes au cluster K8S sont représentes par des **objets**.
+
+Ces objets sont décrits par des **fichiers de configurations** (généralement au format yaml)
+
+Ces objets sont manipulables grâce à **l'API** du cluster K8S (appel web)
+
 ## Fonctionnement
 
 La gestion des objets dans K8S s'effectue comme suite :
