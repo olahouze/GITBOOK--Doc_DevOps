@@ -42,6 +42,12 @@ Les **sidecar** sont des conteneur qui fonctionnent dans un POD pour apporter de
 
 ### Architecture Istio
 
+#### Ingress Gateway
+
+!!! Schema ingress
+
+#### PODs et Sidecar
+
 ![](<../../.gitbook/assets/Istio--Architecture Istio.png>)
 
 * Le conteneur utilisé comme sidecar par Istio est les proxy **Envoy**
