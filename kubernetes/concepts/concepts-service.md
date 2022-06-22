@@ -11,7 +11,7 @@ Il existe différents type d'exposition
 3. **Loadbalanceur** : Permet de demander au Provider la création d'un Load Balanceur qui va donner l’accès au service au monde extérieur (création automatique des éléments "cluster IP" + "Node Port")
 
 {% hint style="info" %}
-La methode de redirection des flux entre le LoadBalanceur et le service est différent selon les Providers : [https://www.stackrox.io/blog/kubernetes-networking-demystified/](https://www.stackrox.io/blog/kubernetes-networking-demystified/)
+La méthode de redirection des flux entre le LoadBalanceur et le service est différent selon les Providers : [https://www.stackrox.io/blog/kubernetes-networking-demystified/](https://www.stackrox.io/blog/kubernetes-networking-demystified/)
 {% endhint %}
 
 ## Fonctionnement
@@ -22,8 +22,8 @@ Les différentes étapes lors de l'exposition d'un service
    1. Port d'exposition du service
    2. Port d’écoute des POD (optionnel)
    3. IP d'exposition du service (optionnel)
-2. Le cluster va créer le service et lui associé l'IP adéquat (Virtual IP)
-3. Le cluster va créer les différents **endpoints** en fonction du nombre de POD concernés par le service (Endpoint = IP POD + port d'ecoute du POD)
+2. Le cluster va créer le **service** et lui associé l'IP adéquat (Virtual IP)
+3. Le cluster va créer les différents **endpoints** en fonction du nombre de POD concernés par le service (Endpoint = IP POD + port d’écoute du POD)
 4. Le **kube-proxy** de chaque node va agir sur les règles **iptables** pour permettre à chaque node de
    1. Traiter le trafic à destination de l'IP du service (Virtual IP)
    2. Renvoyer le paquet sur un node qui héberge un POD concerné par le service

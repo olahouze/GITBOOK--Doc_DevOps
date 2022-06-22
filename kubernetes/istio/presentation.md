@@ -58,7 +58,13 @@ Les **sidecar** sont des conteneur qui fonctionnent dans un POD pour apporter de
 Les flux utilisateurs entrants passent par les éléments suivants dans une architecture avec Istio
 
 * Une **Ingress** **Gateway** qui sert de point d'entré (il peut exister plusieurs ingress gateway pour séparer les flux entrant en fonction de certaines contraintes)
-* Des **VirtualService** qui servent à router le flux en fonction de règles spécifique (hostname, value dans le header, etc...). Un VirtualService est **toujours associé à une Gateway** et renvoi vers un **Service** ou une **DestinationRule**
-* Des **DestinationRules** qui permettent d'identifier les PODs vers lesquels envoyer le flux. Ces DestinationRules remplacent les objets "Service" classique dans K8S pour apporter plus de possibilité dans l'utilisation de Istio (il s'agit d'un CRD Istio)
+* Des **VirtualService** qui servent à router le flux en fonction de règles spécifique (hostname, value dans le header, etc...). Un VirtualService est **toujours associé à une Gateway** et renvoi vers une **DestinationRule**
+* Des **DestinationRules** qui permettent d'identifier les PODs d'un service vers lesquels envoyer le flux.&#x20;
+
+{% hint style="info" %}
+Ces **DestinationRules** permettent de sélectionner des PODs spécifiques qui sont adressés par un objet **Service** en identifiant certains **Endpoints** du service qui partagent des caractéristiques communes (ex: un label de version)
+{% endhint %}
+
+
 
 ## Sources
