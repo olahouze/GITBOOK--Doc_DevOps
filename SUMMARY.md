@@ -26,6 +26,7 @@
   * [Présentation](kubernetes/istio/presentation.md)
   * [MutualTLS](kubernetes/istio/mutualtls.md)
   * [RBAC](kubernetes/istio/rbac.md)
+  * [Configuration Multicluster](kubernetes/istio/configuration-multicluster.md)
 * [\[SOS\] - Commandes utiles](kubernetes/sos-commandes-utiles.md)
 
 ## 📦 AWS
