@@ -68,3 +68,5 @@ Ces **DestinationRules** permettent de sélectionner des PODs spécifiques qui s
 ![](../../.gitbook/assets/Istio--DestinationRule.png)
 
 ## Sources
+
+{% embed url="https://istio.io/latest/" %}
