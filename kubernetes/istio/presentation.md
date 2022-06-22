@@ -65,6 +65,6 @@ Les flux utilisateurs entrants passent par les éléments suivants dans une arch
 Ces **DestinationRules** permettent de sélectionner des PODs spécifiques qui sont adressés par un objet **Service** en identifiant certains **Endpoints** du service qui partagent des caractéristiques communes (ex: un label de version)
 {% endhint %}
 
-
+![](../../.gitbook/assets/Istio--DestinationRule.png)
 
 ## Sources
