@@ -24,6 +24,8 @@
   * [K8S + Vault - Utilisation Vault-Injector](kubernetes/configuration/configuration-k8s-+-vault-utilisation-vault-injector.md)
 * [🎆 Istio](kubernetes/istio/README.md)
   * [Présentation](kubernetes/istio/presentation.md)
+  * [MutualTLS](kubernetes/istio/mutualtls.md)
+  * [RBAC](kubernetes/istio/rbac.md)
 * [\[SOS\] - Commandes utiles](kubernetes/sos-commandes-utiles.md)
 
 ## 📦 AWS
